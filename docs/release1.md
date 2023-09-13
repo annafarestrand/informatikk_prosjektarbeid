@@ -1,0 +1,1 @@
+Her kommer dokumentasjon for release1
