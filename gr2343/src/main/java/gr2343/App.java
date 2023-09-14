@@ -1,4 +1,4 @@
-package 2343;
+package gr2343;
 
 /**
  * Hello world!
