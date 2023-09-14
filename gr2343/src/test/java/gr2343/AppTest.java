@@ -1,4 +1,4 @@
-package 2343;
+package gr2343;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
