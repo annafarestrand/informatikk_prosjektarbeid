@@ -1,4 +1,4 @@
-package gr2343;
+package gr2343.core;
 
 public class CoffeRatingItem {
     private String description;
