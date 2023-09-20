@@ -1,9 +1,7 @@
 # Group gr2343 repository 
 // todo: skjermbilde
-## About
-This project was developed in the course IT1901 at NTNU.
-
-This repository contains coffee rating, a personal ratingsystem for coffee. It allows the user to log, review and browse logged coffee locations.
+# About
+This code project contains coffee rating, a personal ratingsystem for coffee. It allows the user to log, review and browse logged coffee locations.
 
 ## Structure and Maven build
 The project is made with JavaFX, and data is stored and read from JSON-objects.
