@@ -1,7 +1,3 @@
-# Group gr2343 repository 
- 
-Welcome to IT1901 Fall 2023 course 
- 
-Good luck! 
+En README.md-fil på rotnivå i kodelageret skal beskrive innholdet, spesielt hvilken mappe inni kodelageret som utgjør kodingsprosjektet.
 
-Her skal vi legge inn beskrivelse av hva appen handler om og er ment å gjøre (når den er mer eller mindre ferdig). Ha med et illustrerende skjermbilde, så det er lettere å forstå. Det må også være minst én brukerhistorie for funksjonaliteten dere starter med. 
+Altså skal den ytterste readme-en i det minste beskrive hva som ligger i de ulike mappene
