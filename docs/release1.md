@@ -7,6 +7,5 @@ The code project now contains a fundamental version of coffee rating. Here you a
 //TODO:insertscreenshot
 
 ## Utviklingsmetode
-For utviklingen vi har hatt så langt har vi i stor grad benyttet oss av issues i GitLab. Her har vi laget en milestone for release 1, som vi har koblet opp med issuene vi har jobbed
 For development we have used issues in GitLab. A milestone for release 1 has been created in GitLab, which is connected to the issues we have worked on for this release. We have also made an issue for the user story we have worked on, and connected the issues relating to the user story to the user story issue. Issues are assigned to the person working on them, and added one of the labels: "not started", "in progress", "done" //TODO:verify. The issues are also labeled if they are related to: "Documentation", "Infrastructure", "Tests".
 Branching in Git is used. When working on an issue, a new branch is created, and a merge request connected to the resolved issue is made. The merge request is always reviewed by another project member before the branch is merged into master.
