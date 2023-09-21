@@ -7,7 +7,7 @@ This code project contains coffee rating, a personal ratingsystem for coffee. It
 ## Structure and Maven build
 The project is made with JavaFX, and data is stored and read from JSON-objects.
 
-The maven build requires Maven version //TODO:insert, Java version //Todo:insert and JavaFX version //Todo:insert.
+The maven build requires Maven version 3.8.1, Java version 17 and JavaFX version //Todo:insert.
 
 ## User stories
 - As a user, I want to review the coffee I'm drinking.
