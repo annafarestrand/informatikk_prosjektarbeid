@@ -19,8 +19,30 @@ import gr2343.core.CoffeRatings;
 
 public class CoffeRatingsTest {
 
+    @Test 
+    public void testSetAndGetDescription_returnsDescription() {   // tester foerst at get og set for description virker som den skal
+        CoffeRatingItem newItem = new CoffeRatingItem();
+
+        String description = "Kontoret på A3";
+
+        newItem.setDescription(description);
+
+        assertEquals(description, newItem.getDescription());
+    }
+
+    @Test 
+    public void testSetAndGetRating_returnsRating() {            // tester saa at get og set for rating virker som den skal
+        CoffeRatingItem newItem = new CoffeRatingItem();
+
+        int rating = 4;
+        
+        newItem.setRating(rating);
+
+        assertEquals(rating, newItem.getRating());
+    }
+
     @Test
-    public void testAddCoffeRatingItem_returnsListWithOneItem() { // sjekker at et element kan legges til i Coffeerating
+    public void testAddCoffeRatingItem_returnsListWithOneItem() { // tester at et element kan legges til i CoffeRatings
         CoffeRatings newRating = new CoffeRatings();
         CoffeRatingItem newItem = new CoffeRatingItem();
 
@@ -37,7 +59,7 @@ public class CoffeRatingsTest {
     }
 
     @Test
-    public void testRemoveCoffeRatingItem_returnsEmptyList() { // sjekker at et element kan fjernes fra Coffeerating
+    public void testRemoveCoffeRatingItem_returnsEmptyList() { // tester at et element kan fjernes fra CoffeeRating
         CoffeRatings newRating = new CoffeRatings();
         CoffeRatingItem newItem = new CoffeRatingItem();
 
