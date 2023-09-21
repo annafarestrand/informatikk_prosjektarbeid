@@ -51,30 +51,4 @@ public class CoffeRatingsTest {
 
         assertFalse(newRatingIterator.hasNext());
     }
-
-    /**
-     * // test for input i tekstfelt
-     * 
-     * @Test
-     *       public void inputIsText(){
-     *       boolean containsLetter = false;
-     * 
-     *       for (int i = 0; i < inputFraTekstfelt.length(); i ++) {
-     *       if (inputFraTekstfelt.at(i).isAlphabetic()) { // isAlphabetic vs.
-     *       isLetter
-     *       containsLetter = true; // hvis det finnes en bokstav blir denne true og
-     *       man hopper ut av løkken
-     *       break;
-     *       }
-     *       }
-     *       assertTrue(containsLetter); // ok hvis strengen inneholder letter, ikke
-     *       ok hvis ikke
-     *       }
-     * 
-     *       // test for input i rangeringsfeltet
-     * @Test
-     *       public void numberIsInInterval() {
-     *       assertTrue(number >= 1 && number <= 10);
-     *       }
-     */
 }
