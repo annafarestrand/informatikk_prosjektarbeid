@@ -9,27 +9,27 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-import gr2343.core.CoffeRatingItem;
-import gr2343.core.CoffeRatings;
-import gr2343.json.CoffeRatingModule;
+import gr2343.core.CoffeeRatingItem;
+import gr2343.core.CoffeeRatings;
+import gr2343.json.CoffeeRatingModule;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class CoffeRatingController {
+public class CoffeeRatingController {
 
     private final static String ratingsWithItems = "{\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}, {\"description\":\"Kaffe fra stand\",\"rating\":3}]}";
 
-    private CoffeRatings ratings;
+    private CoffeeRatings ratings;
     private ObjectMapper mapper = new ObjectMapper();
 
-    public CoffeRatingController() throws IOException {
+    public CoffeeRatingController() throws IOException {
         // setter opp data
-        mapper.registerModule(new CoffeRatingModule());
+        mapper.registerModule(new CoffeeRatingModule());
         try {
-            ratings = mapper.readValue(ratingsWithItems, CoffeRatings.class);
+            ratings = mapper.readValue(ratingsWithItems, CoffeeRatings.class);
         } catch (JsonProcessingException e) {
         }
     }
@@ -41,7 +41,7 @@ public class CoffeRatingController {
     TextField newRatingText;
 
     @FXML
-    ListView<CoffeRatingItem> ratingsView;
+    ListView<CoffeeRatingItem> ratingsView;
 
     @FXML
     public void initialize() {
@@ -51,18 +51,18 @@ public class CoffeRatingController {
 
     protected void updateRatingsView() {
         // oppdaterer view
-        List<CoffeRatingItem> viewRatings = ratingsView.getItems();
+        List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
         viewRatings.clear();
         viewRatings.addAll(ratings.getItems());
     }
 
     @FXML
-    public void handlenewCoffeRatingAction() {
+    public void handlenewCoffeeRatingAction() {
         // legger til ny rating
-        CoffeRatingItem item = new CoffeRatingItem();
+        CoffeeRatingItem item = new CoffeeRatingItem();
         item.setDescription(newDescriptionText.getText());
         item.setRating(Integer.parseInt(newRatingText.getText()));
-        ratings.addCoffeRatingItem(item);
+        ratings.addCoffeeRatingItem(item);
         ratingsView.getItems().add(item);
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         try {

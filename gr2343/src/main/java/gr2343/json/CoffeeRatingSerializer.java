@@ -6,25 +6,28 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-import gr2343.core.CoffeRatingItem;
+import gr2343.core.CoffeeRatingItem;
+import gr2343.core.CoffeeRatings;
 
-public class CoffeRatingItemSerializer extends JsonSerializer<CoffeRatingItem> {
+public class CoffeeRatingSerializer extends JsonSerializer<CoffeeRatings> {
     /*
      * Format:
      * {
-     * "description": "A very good coffee",
-     * "rating": 5
+     * "items": [...] // Array of CoffeeRatingItem
      * }
      */
 
     @Override
-    public void serialize(CoffeRatingItem item,
+    public void serialize(CoffeeRatings items,
             JsonGenerator jGen,
             SerializerProvider serializerProvider)
             throws IOException {
         jGen.writeStartObject();
-        jGen.writeStringField("description", item.getDescription());
-        jGen.writeNumberField("rating", item.getRating());
+        jGen.writeArrayFieldStart("items");
+        for (CoffeeRatingItem item : items) {
+            jGen.writeObject(item);
+        }
+        jGen.writeEndArray();
         jGen.writeEndObject();
     }
 }

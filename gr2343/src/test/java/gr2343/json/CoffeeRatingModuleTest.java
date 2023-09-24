@@ -9,26 +9,26 @@ import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import gr2343.core.CoffeRatingItem;
-import gr2343.core.CoffeRatings;
+import gr2343.core.CoffeeRatingItem;
+import gr2343.core.CoffeeRatings;
 
-public class CoffeRatingModuleTest {
+public class CoffeeRatingModuleTest {
 
     private static ObjectMapper mapper;
 
     @BeforeAll
     public static void setUp() {
         mapper = new ObjectMapper();
-        mapper.registerModule(new CoffeRatingModule());
+        mapper.registerModule(new CoffeeRatingModule());
     }
 
     @Test
     public void testSerializers() {
-        CoffeRatings ratings = new CoffeRatings();
-        CoffeRatingItem item = new CoffeRatingItem();
+        CoffeeRatings ratings = new CoffeeRatings();
+        CoffeeRatingItem item = new CoffeeRatingItem();
         item.setDescription("Kaffe på Sit Kafe");
         item.setRating(5);
-        ratings.addCoffeRatingItem(item);
+        ratings.addCoffeeRatingItem(item);
         try {
             assertEquals(
                     "{\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}]}",

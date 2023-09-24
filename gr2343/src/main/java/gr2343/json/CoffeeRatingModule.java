@@ -5,30 +5,30 @@ import com.fasterxml.jackson.core.util.VersionUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
-import gr2343.core.CoffeRatingItem;
-import gr2343.core.CoffeRatings;
+import gr2343.core.CoffeeRatingItem;
+import gr2343.core.CoffeeRatings;
 
-public class CoffeRatingModule extends SimpleModule {
-    private static final String NAME = "CoffeRatingModule";
+public class CoffeeRatingModule extends SimpleModule {
+    private static final String NAME = "CoffeeRatingModule";
     private static final VersionUtil VERSION_UTIL = new VersionUtil() {
     };
 
-    public CoffeRatingModule() {
+    public CoffeeRatingModule() {
         super(NAME, VERSION_UTIL.version());
-        addSerializer(CoffeRatingItem.class, new CoffeRatingItemSerializer());
-        addSerializer(CoffeRatings.class, new CoffeRatingSerializer());
+        addSerializer(CoffeeRatingItem.class, new CoffeeRatingItemSerializer());
+        addSerializer(CoffeeRatings.class, new CoffeeRatingSerializer());
     }
 
     // test
     /*
      * public static void main(String[] args) {
      * ObjectMapper mapper = new ObjectMapper();
-     * mapper.registerModule(new CoffeRatingModule());
-     * CoffeRatings ratings = new CoffeRatings();
-     * CoffeRatingItem item = new CoffeRatingItem();
+     * mapper.registerModule(new CoffeeRatingModule());
+     * CoffeeRatings ratings = new CoffeeRatings();
+     * CoffeeRatingItem item = new CoffeeRatingItem();
      * item.setDescription("Kaffe på Sit Kafe");
      * item.setRating(5);
-     * ratings.addCoffeRatingItem(item);
+     * ratings.addCoffeeRatingItem(item);
      * try {
      * System.out.println(mapper.writeValueAsString(ratings));
      * } catch (JsonProcessingException e) {

@@ -6,17 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class CoffeRatingApp extends Application {
+public class CoffeeRatingApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("CoffeRating.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("CoffeeRating.fxml"));
         stage.setScene(new Scene(parent));
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(CoffeRatingApp.class, args);
+        launch(CoffeeRatingApp.class, args);
     }
 
 }

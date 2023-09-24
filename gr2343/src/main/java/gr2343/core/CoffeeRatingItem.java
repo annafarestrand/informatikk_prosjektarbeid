@@ -1,6 +1,6 @@
 package gr2343.core;
 
-public class CoffeRatingItem {
+public class CoffeeRatingItem {
     private String description;
     private int rating;
 

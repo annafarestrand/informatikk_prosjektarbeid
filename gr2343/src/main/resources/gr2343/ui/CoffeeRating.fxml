@@ -8,11 +8,11 @@
 <?import javafx.scene.control.ListView?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr2343.ui.CoffeRatingController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr2343.ui.CoffeeRatingController">
    <children>
       <TextField fx:id="newDescriptionText" layoutX="220.0" layoutY="77.0" promptText="Hvor drakk du kaffe?" />
       <TextField fx:id="newRatingText" layoutX="220.0" layoutY="120.0" promptText="Gi rating 1-5"/> <!-- Assigning an fx:id to the second text field -->
-      <Button fx:id="newCoffeRatingButton" layoutX="392.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlenewCoffeRatingAction" text="Lagre" />
+      <Button fx:id="newCoffeeRatingButton" layoutX="392.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlenewCoffeeRatingAction" text="Lagre" />
       <ListView fx:id="ratingsView" layoutX="71.0" layoutY="170.0" prefHeight="195.0" prefWidth="238.0" />
    </children>
 </Pane>
