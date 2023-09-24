@@ -21,8 +21,8 @@ public class CoffeRatings implements Iterable<CoffeRatingItem> {
         return items.iterator();
     }
 
-    public Collection<CoffeRatingItem> getItems() {
-        Collection<CoffeRatingItem> result = new ArrayList<>(items.size());
+    public List<CoffeRatingItem> getItems() {
+        List<CoffeRatingItem> result = new ArrayList<>(items.size());
         for (CoffeRatingItem item : items) {
             result.add(item);
         }
