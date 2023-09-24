@@ -9,7 +9,7 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr2343.ui.CoffeRatingController">
     <HBox>
-        <Button fx:id="newCoffeRatingButton" text="Ny rating" onAction=#handlenewCoffeRatingAction/>     
+        <Button fx:id="newCoffeRatingButton" text="Ny rating" onAction="#handlenewCoffeRatingAction"/>     
         <TextField fx:id="newDescriptionText" promptText="Hvor drakk du kaffe?"/>
         <TextField fx:id="newRatingText" promptText="Gi en rating 1-5"/>
     </HBox>
