@@ -1,10 +1,13 @@
 package gr2343.ui;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import gr2343.core.CoffeRatingItem;
 import gr2343.core.CoffeRatings;
@@ -61,6 +64,12 @@ public class CoffeRatingController {
         item.setRating(Integer.parseInt(newRatingText.getText()));
         ratings.addCoffeRatingItem(item);
         ratingsView.getItems().add(item);
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        try {
+            writer.writeValue(new File("ratings.json"), ratings);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     };
 
 }
