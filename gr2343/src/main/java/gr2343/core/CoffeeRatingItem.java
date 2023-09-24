@@ -4,6 +4,13 @@ public class CoffeeRatingItem {
     private String description;
     private int rating;
 
+    @Override
+    public String toString() {
+        return description +
+                ", " + rating +
+                "/5";
+    }
+
     public String getDescription() {
         return description;
     }
