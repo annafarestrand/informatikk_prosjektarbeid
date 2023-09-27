@@ -13,6 +13,7 @@
       <TextField fx:id="newDescriptionText" layoutX="220.0" layoutY="77.0" promptText="Hvor drakk du kaffe?" />
       <TextField fx:id="newRatingText" layoutX="220.0" layoutY="120.0" promptText="Gi rating 1-5"/> <!-- Assigning an fx:id to the second text field -->
       <Button fx:id="newCoffeeRatingButton" layoutX="392.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlenewCoffeeRatingAction" text="Lagre" />
+      <Button fx:id="deleteButton" layoutX="392.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleDeleteCoffeRatingItem" text="Slett" />
       <ListView fx:id="ratingsView" layoutX="71.0" layoutY="170.0" prefHeight="195.0" prefWidth="238.0" />
    </children>
 </Pane>
