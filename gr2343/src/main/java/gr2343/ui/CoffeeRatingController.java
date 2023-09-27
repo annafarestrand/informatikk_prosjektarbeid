@@ -57,6 +57,15 @@ public class CoffeeRatingController {
     }
 
     @FXML
+    public void handleDeleteCoffeRatingItem() {
+        CoffeeRatingItem item = ratingsView.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            ratings.removeCoffeeRatingItem(item);
+            ratingsView.getItems().remove(item);
+        }
+    }
+
+    @FXML
     public void handlenewCoffeeRatingAction() {
         // legger til ny rating
         CoffeeRatingItem item = new CoffeeRatingItem();
