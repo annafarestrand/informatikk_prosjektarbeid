@@ -47,6 +47,7 @@ public class CoffeeRatingController {
     public void initialize() {
         // kobler data til view
         updateRatingsView();
+        ratings.addCofferatingListener(ratings -> updateRatingsView());
     }
 
     protected void updateRatingsView() {
