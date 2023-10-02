@@ -58,6 +58,7 @@ public class CoffeeRatingController {
         updateRatingsView();
         updatCoffeeRatingButtons();
         ratings.addCofferatingListener(ratings -> updateRatingsView());
+        ratingsView.setCellFactory(ratingsView -> new CoffeeRatingItemListCell());
         ratingsView.getSelectionModel().selectedItemProperty().addListener((prop, oldValue, newValue) -> {
             updatCoffeeRatingButtons();
         });
