@@ -2,6 +2,7 @@ package gr2343.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 public class CoffeeRatingController {
 
@@ -44,10 +44,23 @@ public class CoffeeRatingController {
     ListView<CoffeeRatingItem> ratingsView;
 
     @FXML
+    Button deleteButton;
+
+    @FXML
+    Button newCoffeeRatingButton;
+
+    private Collection<Button> selectionsButtons;
+
+    @FXML
     public void initialize() {
+        selectionsButtons = List.of(deleteButton);
         // kobler data til view
         updateRatingsView();
+        updatCoffeeRatingButtons();
         ratings.addCofferatingListener(ratings -> updateRatingsView());
+        ratingsView.getSelectionModel().selectedItemProperty().addListener((prop, oldValue, newValue) -> {
+            updatCoffeeRatingButtons();
+        });
     }
 
     protected void updateRatingsView() {
@@ -55,6 +68,14 @@ public class CoffeeRatingController {
         List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
         viewRatings.clear();
         viewRatings.addAll(ratings.getItems());
+    }
+
+    protected void updatCoffeeRatingButtons() {
+        // oppdaterer knapper
+        boolean disable = ratingsView.getSelectionModel().getSelectedItem() == null;
+        for (Button button : selectionsButtons) {
+            button.setDisable(disable);
+        }
     }
 
     @FXML
