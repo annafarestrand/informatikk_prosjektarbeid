@@ -11,18 +11,17 @@ public class CoffeeRatings implements Iterable<CoffeeRatingItem> {
     public CoffeeRatingItem createCoffeeRatingItem() {
         return new CoffeeRatingListItem(this);
     }
-    
+
     public void addCoffeeRatingItem(CoffeeRatingItem item) {
         CoffeeRatingListItem coffeeRatingListItem = null;
-        if (item instanceof CoffeeRatingItem) {
+        if (item instanceof CoffeeRatingListItem) {
             coffeeRatingListItem = (CoffeeRatingListItem) item;
+        } else {
+            coffeeRatingListItem = new CoffeeRatingListItem(this);
+            coffeeRatingListItem.setDescription(item.getDescription());
+            coffeeRatingListItem.setRating(item.getRating());
         }
-        else {
-            CoffeeRatingListItem newItem = new CoffeeRatingListItem(this);
-            newItem.setDescription(item.getDescription());
-            newItem.setRating(item.getRating());
-        }
-        items.add(item);
+        // items.add(coffeeRatingListItem); Made a bug, keep it incase of trouble later
         fireCoffeeRatingChanged();
     }
 
@@ -63,6 +62,5 @@ public class CoffeeRatings implements Iterable<CoffeeRatingItem> {
     protected void fireCoffeeRatingChanged(CoffeeRatingItem item) {
         fireCoffeeRatingChanged();
     }
-
 
 }

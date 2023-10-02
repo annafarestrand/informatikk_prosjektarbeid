@@ -1,7 +1,7 @@
 package gr2343.core;
 
 public class CoffeeRatingListItem extends CoffeeRatingItem {
-    
+
     private final CoffeeRatings ratings;
 
     public CoffeeRatingListItem(CoffeeRatings ratings) {
