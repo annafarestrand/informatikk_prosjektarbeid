@@ -2,7 +2,6 @@ package gr2343.ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,10 +16,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class CoffeeRatingController {
 
-    private final static String ratingsWithItems = "{\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}, {\"description\":\"Kaffe fra stand\",\"rating\":3}]}";
+    private final static String ratingsWithItems =
+            "{\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}, {\"description\":\"Kaffe fra stand\",\"rating\":3}]}";
 
     private CoffeeRatings ratings;
     private ObjectMapper mapper = new ObjectMapper();
@@ -44,24 +45,9 @@ public class CoffeeRatingController {
     ListView<CoffeeRatingItem> ratingsView;
 
     @FXML
-    Button deleteButton;
-
-    @FXML
-    Button newCoffeeRatingButton;
-
-    private Collection<Button> selectionsButtons;
-
-    @FXML
     public void initialize() {
-        selectionsButtons = List.of(deleteButton);
         // kobler data til view
         updateRatingsView();
-        updatCoffeeRatingButtons();
-        ratings.addCofferatingListener(ratings -> updateRatingsView());
-        ratingsView.setCellFactory(ratingsView -> new CoffeeRatingItemListCell());
-        ratingsView.getSelectionModel().selectedItemProperty().addListener((prop, oldValue, newValue) -> {
-            updatCoffeeRatingButtons();
-        });
     }
 
     protected void updateRatingsView() {
@@ -69,23 +55,6 @@ public class CoffeeRatingController {
         List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
         viewRatings.clear();
         viewRatings.addAll(ratings.getItems());
-    }
-
-    protected void updatCoffeeRatingButtons() {
-        // oppdaterer knapper
-        boolean disable = ratingsView.getSelectionModel().getSelectedItem() == null;
-        for (Button button : selectionsButtons) {
-            button.setDisable(disable);
-        }
-    }
-
-    @FXML
-    public void handleDeleteCoffeRatingItem() {
-        CoffeeRatingItem item = ratingsView.getSelectionModel().getSelectedItem();
-        if (item != null) {
-            ratings.removeCoffeeRatingItem(item);
-            ratingsView.getItems().remove(item);
-        }
     }
 
     @FXML
