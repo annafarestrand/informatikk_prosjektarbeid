@@ -13,15 +13,12 @@ import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
 import gr2343.json.CoffeeRatingModule;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 public class CoffeeRatingController {
 
-    private final static String ratingsWithItems =
-            "{\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}, {\"description\":\"Kaffe fra stand\",\"rating\":3}]}";
+    private final static String ratingsWithItems = "{\"items\":[]}";
 
     private CoffeeRatings ratings;
     private ObjectMapper mapper = new ObjectMapper();
@@ -50,6 +47,10 @@ public class CoffeeRatingController {
         updateRatingsView();
     }
 
+    protected CoffeeRatings getRatings() {
+        return ratings;
+    }
+
     protected void updateRatingsView() {
         // oppdaterer view
         List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
@@ -71,6 +72,8 @@ public class CoffeeRatingController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        newDescriptionText.clear();
+        newRatingText.clear();
     };
 
 }
