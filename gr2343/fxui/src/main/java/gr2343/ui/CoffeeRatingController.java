@@ -13,10 +13,8 @@ import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
 import gr2343.json.CoffeeRatingModule;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 public class CoffeeRatingController {
 

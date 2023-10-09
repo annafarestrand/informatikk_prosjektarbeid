@@ -3,7 +3,6 @@ package gr2343.ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.util.Iterator;
 
 import org.testfx.framework.junit5.ApplicationTest;
 import org.junit.jupiter.api.BeforeEach;
