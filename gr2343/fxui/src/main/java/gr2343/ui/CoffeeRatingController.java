@@ -50,6 +50,10 @@ public class CoffeeRatingController {
         updateRatingsView();
     }
 
+    protected CoffeeRatings getRatings() {
+        return ratings;
+    }
+
     protected void updateRatingsView() {
         // oppdaterer view
         List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
