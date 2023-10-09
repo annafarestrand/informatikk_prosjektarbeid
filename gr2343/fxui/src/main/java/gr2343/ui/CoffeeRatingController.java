@@ -20,8 +20,7 @@ import javafx.scene.text.Text;
 
 public class CoffeeRatingController {
 
-    private final static String ratingsWithItems =
-            "{\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}, {\"description\":\"Kaffe fra stand\",\"rating\":3}]}";
+    private final static String ratingsWithItems = "{\"items\":[]}";
 
     private CoffeeRatings ratings;
     private ObjectMapper mapper = new ObjectMapper();
@@ -75,6 +74,8 @@ public class CoffeeRatingController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        newDescriptionText.clear();
+        newRatingText.clear();
     };
 
 }
