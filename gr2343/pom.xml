@@ -119,10 +119,10 @@
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.4.2</version>
+				<version>4.7.2.0</version>
 				<configuration>
-					<xmlOutput>false</xmlOutput>
-					<htmlOutput>true</htmlOutput>
+					<propertyName>spotBugsArgLine</propertyName>
+					<outputFormat>html</outputFormat>
 					<excludeFilterFile>config/spotbugs/exclude.xml</excludeFilterFile>
 				</configuration>
 				<executions>
