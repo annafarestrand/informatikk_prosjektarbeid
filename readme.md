@@ -1,4 +1,7 @@
 # IT1901 gr2343
+
+[open masterbranch in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2343/gr2343/-/tree/master?new)
+
 ## About
 This project was developed in the course IT1901 at NTNU.
 This repository contains Coffee rating, a personal app for logging and rating coffee.
