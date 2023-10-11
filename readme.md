@@ -18,3 +18,5 @@ contains the code project.
     contains the core-module of the code project. 
     - fxui:
     contains the UI-module of the code project.
+
+A packetdiagram is provided in docs/images/package_diagram.png and docs/images/package_diagram.puml

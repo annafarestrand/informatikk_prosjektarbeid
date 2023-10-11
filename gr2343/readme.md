@@ -18,4 +18,4 @@ The maven build requires Maven version 3.8.1, Java version 17 and JavaFX version
 3. Install modules by running 'mvn install'
 4. Run tests by running 'mvn test'
 5. Run spotbugs and checkstyle by running 'mvn verify'
-6. Run project directly by running 'mvn javafx:run -f ./fxui/pom.xml' OR run project by first cd'ing into fxui and then running 'mvn javafx:run'
+6. Run project by running 'mvn javafx:run -f ./fxui/pom.xml'
