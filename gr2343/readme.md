@@ -15,6 +15,8 @@ This code project contains coffee rating, a personal ratingsystem for coffee. It
 4. Run tests by running 'mvn test'
 5. Run spotbugs and checkstyle by running 'mvn verify'
 6. Run project by running 'mvn javafx:run -f ./fxui/pom.xml'
+7. In Eclipse Che go to Endpoints->Public and copy the link for 6080-tcp-desktop-ui
+8. Open the link in a new tab
 
 ## Structure and Maven build
 
