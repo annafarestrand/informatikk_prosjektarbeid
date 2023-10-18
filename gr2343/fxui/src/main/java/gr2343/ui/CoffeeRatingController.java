@@ -13,6 +13,7 @@ import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
 import gr2343.json.CoffeeRatingModule;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -40,6 +41,12 @@ public class CoffeeRatingController {
 
     @FXML
     ListView<CoffeeRatingItem> ratingsView;
+
+    @FXML
+    Button newCoffeeRatingButton;
+
+    @FXML
+    Button deleteRatingButton;
 
     @FXML
     public void initialize() {
@@ -75,5 +82,15 @@ public class CoffeeRatingController {
         newDescriptionText.clear();
         newRatingText.clear();
     };
+
+    @FXML
+    public void handleDeleteRatingAction() {
+        // sletter en rating
+        CoffeeRatingItem item = ratingsView.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            ratings.removeCoffeeRatingItem(item);
+            ratingsView.getItems().remove(item);
+        }
+    }
 
 }
