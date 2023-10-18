@@ -24,6 +24,8 @@ public class CoffeeRatingController {
     private CoffeeRatings ratings;
     private ObjectMapper mapper = new ObjectMapper();
 
+    private CoffeeRatingItem selectedItemForUpdate = null;
+
     public CoffeeRatingController() throws IOException {
         // setter opp data
         mapper.registerModule(new CoffeeRatingModule());
@@ -49,6 +51,10 @@ public class CoffeeRatingController {
     Button deleteRatingButton;
 
     @FXML
+    Button updateRatingButton;
+
+
+    @FXML
     public void initialize() {
         // kobler data til view
         updateRatingsView();
@@ -68,19 +74,40 @@ public class CoffeeRatingController {
     @FXML
     public void handlenewCoffeeRatingAction() {
         // legger til ny rating
-        CoffeeRatingItem item = new CoffeeRatingItem();
-        item.setDescription(newDescriptionText.getText());
-        item.setRating(Integer.parseInt(newRatingText.getText()));
-        ratings.addCoffeeRatingItem(item);
-        ratingsView.getItems().add(item);
+        if (selectedItemForUpdate != null) {
+            // Oppdater den eksisterende ratingen med de nye verdiene
+            selectedItemForUpdate.setDescription(newDescriptionText.getText());
+            selectedItemForUpdate.setRating(Integer.parseInt(newRatingText.getText()));
+
+            // Tøm midlertidige tekstfelt
+            newDescriptionText.clear();
+            newRatingText.clear();
+
+            // Nullstill selectedItemForUpdate
+            selectedItemForUpdate = null;
+
+            // Oppdater visningen
+            updateRatingsView();
+        } else {
+            // Legg til ny rating
+            CoffeeRatingItem item = new CoffeeRatingItem();
+            item.setDescription(newDescriptionText.getText());
+            item.setRating(Integer.parseInt(newRatingText.getText()));
+            ratings.addCoffeeRatingItem(item);
+            ratingsView.getItems().add(item);
+
+            // Tøm midlertidige tekstfelt
+            newDescriptionText.clear();
+            newRatingText.clear();
+        }
+
+        // Lagre oppdateringer til fil
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         try {
             writer.writeValue(new File("ratings.json"), ratings);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        newDescriptionText.clear();
-        newRatingText.clear();
     };
 
     @FXML
@@ -92,5 +119,18 @@ public class CoffeeRatingController {
             ratingsView.getItems().remove(item);
         }
     }
+
+    @FXML
+    public void handleUpdateRatingAction() {
+    // Få det valgte elementet som skal oppdateres
+    selectedItemForUpdate = ratingsView.getSelectionModel().getSelectedItem();
+
+    if (selectedItemForUpdate != null) {
+        // Fyll inn midlertidige tekstfelt med eksisterende data for redigering
+        newDescriptionText.setText(selectedItemForUpdate.getDescription());
+        newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
+    }
+}
+
 
 }
