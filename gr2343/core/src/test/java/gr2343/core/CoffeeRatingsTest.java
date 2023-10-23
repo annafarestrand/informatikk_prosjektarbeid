@@ -86,4 +86,17 @@ public class CoffeeRatingsTest {
         assertEquals(newItem1, items.get(0));
         assertEquals(newItem2, items.get(1));
     }
+
+    @Test
+    public void testToString_returnsString() { // tester at toString returnerer riktig description og rating
+        CoffeeRatingItem newItem = new CoffeeRatingItem();
+
+        String description = "Starbucks";
+        int rating = 4;
+
+        newItem.setDescription(description);
+        newItem.setRating(rating);
+
+        assertEquals("Starbucks, 4/5", newItem.toString());
+    }
 }
