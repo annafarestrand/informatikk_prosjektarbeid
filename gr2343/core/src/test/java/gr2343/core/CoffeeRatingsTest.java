@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Iterator;
-
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class CoffeeRatingsTest {
@@ -64,5 +64,39 @@ public class CoffeeRatingsTest {
         Iterator<CoffeeRatingItem> newRatingIterator = newRating.iterator();
 
         assertFalse(newRatingIterator.hasNext());
+    }
+
+    @Test
+    public void testGetItems_returnsItems() { // tester at itemsene som returneres har riktig description og rating
+        CoffeeRatings newRating = new CoffeeRatings();
+        CoffeeRatingItem newItem1 = new CoffeeRatingItem();
+        CoffeeRatingItem newItem2 = new CoffeeRatingItem();
+
+        newItem1.setDescription("Kontoret");
+        newItem1.setRating(4);
+
+        newItem2.setDescription("Stand på Stripa");
+        newItem2.setRating(3);
+
+
+        newRating.addCoffeeRatingItem(newItem1);
+        newRating.addCoffeeRatingItem(newItem2);
+
+        List<CoffeeRatingItem> items = newRating.getItems();
+        assertEquals(newItem1, items.get(0));
+        assertEquals(newItem2, items.get(1));
+    }
+
+    @Test
+    public void testToString_returnsString() { // tester at toString returnerer riktig description og rating
+        CoffeeRatingItem newItem = new CoffeeRatingItem();
+
+        String description = "Starbucks";
+        int rating = 4;
+
+        newItem.setDescription(description);
+        newItem.setRating(rating);
+
+        assertEquals("Starbucks, 4/5", newItem.toString());
     }
 }
