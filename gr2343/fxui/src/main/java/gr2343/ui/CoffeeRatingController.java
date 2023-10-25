@@ -58,6 +58,7 @@ public class CoffeeRatingController {
     public void initialize() {
         // kobler data til view
         updateRatingsView();
+        ratingsView.setCellFactory(ratingsView -> new CoffeeRatingListCell());
     }
 
     protected CoffeeRatings getRatings() {
@@ -122,15 +123,15 @@ public class CoffeeRatingController {
 
     @FXML
     public void handleUpdateRatingAction() {
-    // Få det valgte elementet som skal oppdateres
-    selectedItemForUpdate = ratingsView.getSelectionModel().getSelectedItem();
+        // Få det valgte elementet som skal oppdateres
+        selectedItemForUpdate = ratingsView.getSelectionModel().getSelectedItem();
 
-    if (selectedItemForUpdate != null) {
-        // Fyll inn midlertidige tekstfelt med eksisterende data for redigering
-        newDescriptionText.setText(selectedItemForUpdate.getDescription());
-        newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
+        if (selectedItemForUpdate != null) {
+            // Fyll inn midlertidige tekstfelt med eksisterende data for redigering
+            newDescriptionText.setText(selectedItemForUpdate.getDescription());
+            newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
+        }
     }
-}
 
 
 }
