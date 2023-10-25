@@ -12,8 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class CoffeeRatingAppTest extends ApplicationTest {
@@ -145,7 +143,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
     newItem.setRating(Integer.parseInt(newRating1));
 
     // angrer paa det vi la inn, vil redigere item'et
-    //clickOn("#ratingsView"); // klikker paa det item'et som ligger der fra foer av...
+    // klikker paa det item'et som vi vil endre paa
 
     // skriver inn ny description og rating og lagrer denne
     String newDescription2 = "Kontoret ditt";
