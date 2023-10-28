@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import gr2343.core.CoffeeRatingItem;
 
-public class CoffeeRatingItemSerializer extends JsonSerializer<CoffeeRatingItem> {
+class CoffeeRatingItemSerializer extends JsonSerializer<CoffeeRatingItem> {
     /*
      * Format:
      * {

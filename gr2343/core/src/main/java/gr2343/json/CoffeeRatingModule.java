@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
 
-public class CoffeeRatingModule extends SimpleModule {
+class CoffeeRatingModule extends SimpleModule {
     private static final String NAME = "CoffeeRatingModule";
     private static final VersionUtil VERSION_UTIL = new VersionUtil() {};
 

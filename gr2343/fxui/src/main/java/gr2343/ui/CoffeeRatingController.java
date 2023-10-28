@@ -1,17 +1,14 @@
 package gr2343.ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
-import gr2343.json.CoffeeRatingModule;
+import gr2343.json.CoffeeRatingsPersistence;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -22,15 +19,13 @@ public class CoffeeRatingController {
     private final static String ratingsWithItems = "{\"items\":[]}";
 
     private CoffeeRatings ratings;
-    private ObjectMapper mapper = new ObjectMapper();
+    private CoffeeRatingsPersistence coffeeRatingsPersistence = new CoffeeRatingsPersistence();
 
     private CoffeeRatingItem selectedItemForUpdate = null;
 
     public CoffeeRatingController() throws IOException {
-        // setter opp data
-        mapper.registerModule(new CoffeeRatingModule());
         try {
-            ratings = mapper.readValue(ratingsWithItems, CoffeeRatings.class);
+            ratings = coffeeRatingsPersistence.readCoffeeRatings(ratingsWithItems);
         } catch (JsonProcessingException e) {
         }
     }
@@ -73,7 +68,7 @@ public class CoffeeRatingController {
     }
 
     @FXML
-    public void handlenewCoffeeRatingAction() {
+    public void handlenewCoffeeRatingAction() throws JsonGenerationException, JsonMappingException, IOException {
         // legger til ny rating
         if (selectedItemForUpdate != null) {
             // Oppdater den eksisterende ratingen med de nye verdiene
@@ -103,12 +98,7 @@ public class CoffeeRatingController {
         }
 
         // Lagre oppdateringer til fil
-        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
-        try {
-            writer.writeValue(new File("ratings.json"), ratings);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        coffeeRatingsPersistence.writeCoffeeRatings(ratings, null);
     };
 
     @FXML
