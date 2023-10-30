@@ -8,10 +8,9 @@ import gr2343.core.CoffeeRatings;
 
 class CoffeeRatingModule extends SimpleModule {
     private static final String NAME = "CoffeeRatingModule";
-    private static final VersionUtil VERSION_UTIL = new VersionUtil() {};
 
     public CoffeeRatingModule() {
-        super(NAME, VERSION_UTIL.version());
+        super(NAME, VersionUtil.packageVersionFor(CoffeeRatingModule.class));
         addSerializer(CoffeeRatingItem.class, new CoffeeRatingItemSerializer());
         addSerializer(CoffeeRatings.class, new CoffeeRatingsSerializer());
         addDeserializer(CoffeeRatingItem.class, new CoffeeRatingItemDeserializer());
