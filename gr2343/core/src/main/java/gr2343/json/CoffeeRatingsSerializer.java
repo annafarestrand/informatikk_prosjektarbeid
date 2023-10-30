@@ -11,7 +11,7 @@ import gr2343.core.CoffeeRatings;
 
 class CoffeeRatingsSerializer extends JsonSerializer<CoffeeRatings> {
     /*
-     * Format: { "items": [...] // Array of CoffeeRatingItem }
+     * Format: { "name": "...", "items": [...] // Array of CoffeeRatingItem }
      */
 
     @Override

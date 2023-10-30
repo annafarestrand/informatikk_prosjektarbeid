@@ -25,6 +25,10 @@ public class CoffeeRatingsDeserializer extends JsonDeserializer<CoffeeRatings> {
   public CoffeeRatings deserialize(JsonParser parser, DeserializationContext ctxt)
       throws IOException, JsonProcessingException {
     TreeNode treeNode = parser.getCodec().readTree(parser);
+    return deserialize((JsonNode) treeNode);
+  }
+
+  CoffeeRatings deserialize(JsonNode treeNode) {
     if (treeNode instanceof ObjectNode) {
       ObjectNode objectNode = (ObjectNode) treeNode;
       CoffeeRatings ratings = new CoffeeRatings();
