@@ -13,7 +13,9 @@ class CoffeeRatingModule extends SimpleModule {
     public CoffeeRatingModule() {
         super(NAME, VERSION_UTIL.version());
         addSerializer(CoffeeRatingItem.class, new CoffeeRatingItemSerializer());
-        addSerializer(CoffeeRatings.class, new CoffeeRatingSerializer());
+        addSerializer(CoffeeRatings.class, new CoffeeRatingsSerializer());
+        addDeserializer(CoffeeRatingItem.class, new CoffeeRatingItemDeserializer());
+        addDeserializer(CoffeeRatings.class, new CoffeeRatingsDeserializer());
     }
 
     // test
