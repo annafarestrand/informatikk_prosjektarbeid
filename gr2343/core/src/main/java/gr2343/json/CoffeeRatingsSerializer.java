@@ -18,6 +18,9 @@ class CoffeeRatingsSerializer extends JsonSerializer<CoffeeRatings> {
     public void serialize(CoffeeRatings items, JsonGenerator jGen, SerializerProvider serializerProvider)
             throws IOException {
         jGen.writeStartObject();
+        if (items.getName() != null) {
+            jGen.writeStringField("name", items.getName());
+        }
         jGen.writeArrayFieldStart("items");
         for (CoffeeRatingItem item : items) {
             jGen.writeObject(item);
