@@ -13,19 +13,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import gr2343.core.CoffeeRatingModel;
 
 public class CoffeeRatingController {
 
-    private final static String ratingsWithItems = "{\"items\":[]}";
+    private final static String ratingsWithItems = "{\"lists\":[{\"name\":\"todo\",\"items\":[]}]}";
 
-    private CoffeeRatings ratings;
+    // private CoffeeRatings ratings;
+    private CoffeeRatingModel model;
     private CoffeeRatingsPersistence coffeeRatingsPersistence = new CoffeeRatingsPersistence();
 
     private CoffeeRatingItem selectedItemForUpdate = null;
 
     public CoffeeRatingController() throws IOException {
         try {
-            ratings = coffeeRatingsPersistence.readCoffeeRatings(ratingsWithItems);
+            model = coffeeRatingsPersistence.readCoffeeRatings(ratingsWithItems);
         } catch (JsonProcessingException e) {
         }
     }
@@ -57,14 +59,14 @@ public class CoffeeRatingController {
     }
 
     protected CoffeeRatings getRatings() {
-        return ratings;
+        return model.iterator().next();
     }
 
     protected void updateRatingsView() {
         // oppdaterer view
         List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
         viewRatings.clear();
-        viewRatings.addAll(ratings.getItems());
+        viewRatings.addAll(getRatings().getItems());
     }
 
     @FXML
@@ -89,7 +91,7 @@ public class CoffeeRatingController {
             CoffeeRatingItem item = new CoffeeRatingItem();
             item.setDescription(newDescriptionText.getText());
             item.setRating(Integer.parseInt(newRatingText.getText()));
-            ratings.addCoffeeRatingItem(item);
+            getRatings().addCoffeeRatingItem(item);
             ratingsView.getItems().add(item);
 
             // Tøm midlertidige tekstfelt
@@ -98,7 +100,7 @@ public class CoffeeRatingController {
         }
 
         // Lagre oppdateringer til fil
-        coffeeRatingsPersistence.writeCoffeeRatings(ratings, null);
+        coffeeRatingsPersistence.writeCoffeeRatings(model, null);
     };
 
     @FXML
@@ -106,7 +108,7 @@ public class CoffeeRatingController {
         // sletter en rating
         CoffeeRatingItem item = ratingsView.getSelectionModel().getSelectedItem();
         if (item != null) {
-            ratings.removeCoffeeRatingItem(item);
+            getRatings().removeCoffeeRatingItem(item);
             ratingsView.getItems().remove(item);
         }
     }
