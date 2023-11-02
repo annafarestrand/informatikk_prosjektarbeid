@@ -2,19 +2,25 @@ package gr2343.json;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.util.Iterator;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
+import gr2343.core.CoffeeRatingModel;
 
 public class CoffeeRatingModuleTest {
 
     private static ObjectMapper mapper;
+
+    private String json =
+            "{\"ratings\":[{\"name\":\"rating\",\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}]}]}";
 
     @BeforeAll
     public static void setUp() {
@@ -24,18 +30,37 @@ public class CoffeeRatingModuleTest {
 
     @Test
     public void testSerializers() {
+        CoffeeRatingModel model = new CoffeeRatingModel();
         CoffeeRatings ratings = new CoffeeRatings();
+        ratings.setName("rating");
+        model.addRating(ratings);
         CoffeeRatingItem item = new CoffeeRatingItem();
         item.setDescription("Kaffe på Sit Kafe");
         item.setRating(5);
         ratings.addCoffeeRatingItem(item);
         try {
-            assertEquals(
-                    "{\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}]}",
-                    mapper.writeValueAsString(ratings));
+            assertEquals(json, mapper.writeValueAsString(model));
         } catch (JsonProcessingException e) {
             fail();
         }
     }
 
+    @Test
+    public void testDeserializers() {
+        try {
+            CoffeeRatingModel model = mapper.readValue(json, CoffeeRatingModel.class);
+            assertTrue(model.iterator().hasNext());
+            CoffeeRatings ratings = model.iterator().next();
+            assertEquals("rating", ratings.getName());
+            Iterator<CoffeeRatingItem> it = ratings.iterator();
+            assertTrue(it.hasNext());
+            CoffeeRatingItem item = it.next();
+            assertEquals("Kaffe på Sit Kafe", item.getDescription());
+            assertEquals(5, item.getRating());
+        } catch (JsonProcessingException e) {
+            fail();
+        } catch (IOException e) {
+            fail();
+        }
+    }
 }

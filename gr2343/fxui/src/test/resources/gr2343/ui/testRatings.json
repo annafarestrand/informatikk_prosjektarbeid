@@ -1,9 +1,9 @@
-{
+{"lists":[{"name":"ratings",
     "items" : [ {
       "description" : "Kaffe på Sit Kafe",
       "rating" : 5
     }, {
       "description" : "Kaffe fra stand",
       "rating" : 3
-    } ]
+    } ] } ]
   }

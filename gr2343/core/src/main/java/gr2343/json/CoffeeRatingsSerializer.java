@@ -9,20 +9,18 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
 
-class CoffeeRatingSerializer extends JsonSerializer<CoffeeRatings> {
+class CoffeeRatingsSerializer extends JsonSerializer<CoffeeRatings> {
     /*
-     * Format:
-     * {
-     * "items": [...] // Array of CoffeeRatingItem
-     * }
+     * Format: { "name": "...", "items": [...] // Array of CoffeeRatingItem }
      */
 
     @Override
-    public void serialize(CoffeeRatings items,
-            JsonGenerator jGen,
-            SerializerProvider serializerProvider)
+    public void serialize(CoffeeRatings items, JsonGenerator jGen, SerializerProvider serializerProvider)
             throws IOException {
         jGen.writeStartObject();
+        if (items.getName() != null) {
+            jGen.writeStringField("name", items.getName());
+        }
         jGen.writeArrayFieldStart("items");
         for (CoffeeRatingItem item : items) {
             jGen.writeObject(item);

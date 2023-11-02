@@ -5,6 +5,17 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CoffeeRatings implements Iterable<CoffeeRatingItem> {
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private List<CoffeeRatingItem> items = new ArrayList<CoffeeRatingItem>();
 
     public void addCoffeeRatingItem(CoffeeRatingItem item) {
