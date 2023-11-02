@@ -17,7 +17,7 @@ import gr2343.core.CoffeeRatingModel;
 
 public class CoffeeRatingController {
 
-    private final static String ratingsWithItems = "{\"lists\":[{\"name\":\"todo\",\"items\":[]}]}";
+    private final static String ratingsWithItems = "{\"lists\":[{\"name\":\"ratings\",\"items\":[]}]}";
 
     // private CoffeeRatings ratings;
     private CoffeeRatingModel model;
@@ -58,20 +58,27 @@ public class CoffeeRatingController {
         ratingsView.setCellFactory(ratingsView -> new CoffeeRatingListCell());
     }
 
+    protected CoffeeRatingModel getModel() {
+        return model;
+    }
+
     protected CoffeeRatings getRatings() {
-        return model.iterator().next();
+        return model.getRating("ratings");
     }
 
     protected void updateRatingsView() {
         // oppdaterer view
         List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
         viewRatings.clear();
-        viewRatings.addAll(getRatings().getItems());
+        CoffeeRatings ratings = model.getRating("ratings");
+        if (ratings != null) {
+            viewRatings.addAll(ratings.getItems());
+        }
     }
 
     @FXML
     public void handlenewCoffeeRatingAction() throws JsonGenerationException, JsonMappingException, IOException {
-        // legger til ny rating
+        // Legg til ny rating
         if (selectedItemForUpdate != null) {
             // Oppdater den eksisterende ratingen med de nye verdiene
             selectedItemForUpdate.setDescription(newDescriptionText.getText());
@@ -87,11 +94,24 @@ public class CoffeeRatingController {
             // Oppdater visningen
             updateRatingsView();
         } else {
+            // Få CoffeeRatings object for "ratings"
+            CoffeeRatings ratings = model.getRating("ratings");
+
+            if (ratings == null) {
+                // If "ratings" doesn't exist in the model, create it
+                ratings = new CoffeeRatings();
+                ratings.setName("ratings");
+                model.addRating(ratings);
+            }
+
             // Legg til ny rating
             CoffeeRatingItem item = new CoffeeRatingItem();
             item.setDescription(newDescriptionText.getText());
             item.setRating(Integer.parseInt(newRatingText.getText()));
-            getRatings().addCoffeeRatingItem(item);
+
+            // Add the new item to the ratings
+            ratings.addCoffeeRatingItem(item);
+
             ratingsView.getItems().add(item);
 
             // Tøm midlertidige tekstfelt
@@ -101,7 +121,8 @@ public class CoffeeRatingController {
 
         // Lagre oppdateringer til fil
         coffeeRatingsPersistence.writeCoffeeRatings(model, null);
-    };
+    }
+
 
     @FXML
     public void handleDeleteRatingAction() {
