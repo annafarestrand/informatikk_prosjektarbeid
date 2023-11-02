@@ -9,23 +9,24 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
+import gr2343.core.CoffeeRatingModel;
 import gr2343.core.CoffeeRatings;
 
 public class CoffeeRatingsPersistenceTest {
 
-    
     private CoffeeRatingsPersistence persistence;
-    private ObjectMapper mockMapper; // simulerer oppførsel til objectMapper
-    private ObjectWriter mockWriter; // simulerer oppførsel til objectWriter
-    private CoffeeRatings mockRatings; // simulerer oppførsel til coffeeRatings
+    private ObjectMapper mockMapper; // Simulates the behavior of the ObjectMapper
+    private ObjectWriter mockWriter; // Simulates the behavior of the ObjectWriter
+    private CoffeeRatingModel mockModel; // Simulates the behavior of the CoffeeRatingModel
 
     @BeforeEach
     public void setUp() {
         mockMapper = mock(ObjectMapper.class);
         mockWriter = mock(ObjectWriter.class);
-        mockRatings = mock(CoffeeRatings.class);
-        
+        mockModel = mock(CoffeeRatingModel.class);
+
         when(mockMapper.writerWithDefaultPrettyPrinter()).thenReturn(mockWriter);
 
         persistence = new CoffeeRatingsPersistence();
@@ -39,15 +40,13 @@ public class CoffeeRatingsPersistenceTest {
         }
     }
 
-    // Sjekker at resultatet av å kjøre readCoffeRatings() matcher mockRatings. Da finner vi ut om readCoffeeRatings deserialiserer JSON riktig og returnerer riktig CoffeeRating-objekt
-    
     @Test
     public void testReadCoffeeRatings() throws IOException {
-        String sampleJson = "{\"ratings\":[]}"; //sampleJson representerer et coffeeRating-objekt
-        when(mockMapper.readValue(sampleJson, CoffeeRatings.class)).thenReturn(mockRatings);
+        String sampleJson = "{\"lists\":[{\"name\":\"ratings\",\"items\":[]}]}"; // Sample JSON representing a
+                                                                                 // CoffeeRatingModel
+        when(mockMapper.readValue(sampleJson, CoffeeRatingModel.class)).thenReturn(mockModel);
 
-        CoffeeRatings result = persistence.readCoffeeRatings(sampleJson);
-        assertEquals(mockRatings, result);
+        CoffeeRatingModel result = persistence.readCoffeeRatings(sampleJson);
+        assertEquals(mockModel, result);
     }
-
 }
