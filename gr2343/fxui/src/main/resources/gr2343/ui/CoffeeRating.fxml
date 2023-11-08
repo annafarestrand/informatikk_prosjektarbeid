@@ -9,12 +9,22 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
     <Label text="Legg inn dine kaffeopplevelser her ☕" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-    <TextField fx:id="newDescriptionText" promptText="Hvor drakk du kaffe?" maxWidth="Infinity"/>
-    <TextField fx:id="newRatingText" promptText="Gi rating 1-5" maxWidth="Infinity"/>
+    
+    <!-- Etikett for beskrivelse tekstfelt -->
+    <HBox spacing="5">
+        <Label text="Beskrivelse:" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="newDescriptionText" promptText="Hvor drakk du kaffe?" maxWidth="Infinity"/>
+    </HBox>
+    
+    <!-- Etikett for rating tekstfelt -->
+    <HBox spacing="5">
+        <Label text="Rating:" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="newRatingText" promptText="Gi rating 1-5" maxWidth="Infinity"/>
+    </HBox>
+    
     <Button fx:id="newCoffeeRatingButton" onAction="#handlenewCoffeeRatingAction" text="Lagre" maxWidth="Infinity"/>
     <Button fx:id="updateRatingButton" onAction="#handleUpdateRatingAction" text="Oppdater" maxWidth="Infinity"/>
     <Button fx:id="deleteRatingButton" onAction="#handleDeleteRatingAction" text="Slett" maxWidth="Infinity"/>
     <Label text="Mine kaffeopplevelser:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
     <ListView fx:id="ratingsView" VBox.vgrow="ALWAYS" prefHeight="250.0" maxWidth="Infinity"/>
 </VBox>
-
