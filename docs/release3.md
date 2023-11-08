@@ -7,16 +7,13 @@ The development method is the same as in release1 and release2, the only differe
 
 ## REST-API
 
-## The modules
-### core
+## The modules?
 
-### ui
-- hvorfor vi valgte denne funksjonaliteten og hvorfor vi løste det slik
+## Functionality
+We have chosen to implement CRUD-functionality where the user is able to create an item, read, update and delete it. This is because the project's requirements were quite open, and we wanted to keep the app simple and rather focus on making it work as well as we could. This is also the reason why the update-logic is implemented as a “create and delete”; to give us the opportunity to focus on other parts of the code. 
 
-### JSON
-- hvordan ting lagres i json
-- definere/dokumentere filformat for brukerdata og evt. innstillinger
-- reflektere over og velge mellom dokumentmetafor (desktop) og implisitt lagring (app)
+### How to use the application
+When you launch the application, a new window should pop up. To add a new object to the list, you write a description in the top textfield and then you can give a rating (from 1 to 5) in the textfield below it. When you press the “Lagre”-button, you should be able to see what you wrote in the list field. If you press an element in the list, you can remove it from the list by pressing “delete”, or update it by pressing “oppdater”, editing the name and/or rating in the textfield and then press “lagre”. 
 
 
 ## Tests
