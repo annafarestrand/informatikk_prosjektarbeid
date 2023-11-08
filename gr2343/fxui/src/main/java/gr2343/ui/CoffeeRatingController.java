@@ -19,7 +19,6 @@ public class CoffeeRatingController {
 
     private final static String ratingsWithItems = "{\"lists\":[{\"name\":\"ratings\",\"items\":[]}]}";
 
-    // private CoffeeRatings ratings;
     private CoffeeRatingModel model;
     private CoffeeRatingsPersistence coffeeRatingsPersistence = new CoffeeRatingsPersistence();
 
@@ -136,15 +135,13 @@ public class CoffeeRatingController {
 
     @FXML
     public void handleUpdateRatingAction() {
-        // Få det valgte elementet som skal oppdateres
+        // Henter det valgte elementet som skal oppdateres
         selectedItemForUpdate = ratingsView.getSelectionModel().getSelectedItem();
 
         if (selectedItemForUpdate != null) {
-            // Fyll inn midlertidige tekstfelt med eksisterende data for redigering
+            // Fyller inn midlertidige tekstfelt med eksisterende data for redigering
             newDescriptionText.setText(selectedItemForUpdate.getDescription());
             newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
         }
     }
-
-
 }

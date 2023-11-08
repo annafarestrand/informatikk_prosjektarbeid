@@ -9,10 +9,8 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import gr2343.core.CoffeeRatingModel;
-import gr2343.core.CoffeeRatings;
 
 public class CoffeeRatingsPersistenceTest {
 

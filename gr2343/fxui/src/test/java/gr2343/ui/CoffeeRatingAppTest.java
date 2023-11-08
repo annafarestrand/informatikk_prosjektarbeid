@@ -7,7 +7,6 @@ import org.testfx.framework.junit5.ApplicationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import gr2343.core.CoffeeRatingItem;
-import gr2343.core.CoffeeRatingModel;
 import gr2343.core.CoffeeRatings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +20,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
   private CoffeeRatings ratings;
   private CoffeeRatingItem item1, item2;
 
+  // starter et testvindu som skal brukes videre
   @Override
   public void start(final Stage stage) throws Exception {
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("CoffeeRatingTest.fxml"));
@@ -55,6 +55,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
 
   }
 
+  // tester at nye objekt blir lagt inn riktig
   @Test
   public void testNewCoffeRating() {
     String newDescription = "Kaffe fra kantina";
@@ -118,9 +119,6 @@ public class CoffeeRatingAppTest extends ApplicationTest {
     newItem.setRating(Integer.parseInt(newRating));
 
     // klikke paa det item'et som skal slettes
-
-    // fra todolist: clickOn(findTodoItemListCellNode(cell -> !cell.getItem().isChecked(), ".check-box",
-    // 0));
 
     // sletter itemet
     clickOn("#deleteRatingButton");

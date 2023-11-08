@@ -1,11 +1,11 @@
 package gr2343.core;
 
 public class CoffeeRatingItem {
-    private String description;
-    private int rating;
+    private String description;  // hvor kaffen ble drukket
+    private int rating;          // paa en skala fra 1 til 5
 
     @Override
-    public String toString() {
+    public String toString() {   // for aa printe coffeeRatingItem'et i listen i UI'en
         return description +
                 ", " + rating +
                 "/5";
