@@ -22,18 +22,7 @@ This code project contains coffee rating, a personal ratingsystem for coffee. It
 
 The project is made with JavaFX, and data is stored and read from JSON-objects.
 
-Example of how data is stored in ratings.json:
-{
-"items" : [ {
-"description" : "Kaffe fra Sit",
-"rating" : 3
-}, {
-"description" : "Kaffe fra Starbucks",
-"rating" : 2
-} ]
-}
-
-The maven build requires Maven version 3.8.1, Java version 17 and JavaFX version 20.
+The maven build requires Maven version 3.8.1, Java version 17, JavaFX version 20 and Jackson version 2.13.4.
 
 ## User stories
 
