@@ -5,8 +5,8 @@ import java.util.EnumSet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import gr2343.json.CoffeeRatingPersistence;
-import gr2343.json.CoffeeRatingPersistence.CoffeeRatingModelParts;
+import gr2343.json.CoffeeRatingsPersistence;
+//import gr2343.json.CoffeeRatingsPersistence.CoffeeRatingModel;
 
 /**
  * The Spring application.
@@ -14,10 +14,10 @@ import gr2343.json.CoffeeRatingPersistence.CoffeeRatingModelParts;
 @SpringBootApplication
 public class CoffeeRatingModelApplication {
 
-  @Bean
-  public Module objectMapperModule() {
-    return CoffeeRatingPersistence.createJacksonModule(EnumSet.of(CoffeeRatingModelParts.LISTS));
-  }
+  //@Bean
+  //public Module objectMapperModule() {
+    //return CoffeeRatingsPersistence.createJacksonModule(EnumSet.of(CoffeeRatingModelParts.LISTS));
+  //}
 
   public static void main(String[] args) {
     SpringApplication.run(CoffeeRatingModelApplication.class, args);

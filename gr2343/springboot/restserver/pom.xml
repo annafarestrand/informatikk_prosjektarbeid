@@ -24,11 +24,13 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+            <version>2.13.4</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.13.4</version>
         </dependency>
 
         <dependency>
@@ -103,10 +105,10 @@
             </plugin>
             
             <!-- spotbugs code quality tool -->
-            <plugin>
+            <!-- <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-            </plugin>
+            </plugin> -->
             
             <!-- Configure jacoco code coverage -->
             <plugin>

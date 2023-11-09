@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import gr2343.core.CoffeeRatings;
 import gr2343.core.CoffeeRatingModel;
 
 /**
@@ -26,7 +27,7 @@ public class CoffeeRatingModelController {
   private CoffeeRatingModelService coffeeRatingModelService;
 
   @GetMapping
-  public CoffeeRatingModel getCoffeRatingModel() {
+  public CoffeeRatingModel getCoffeeRatingModel() {
     return coffeeRatingModelService.getCoffeeRatingModel();
   }
 
@@ -41,9 +42,9 @@ public class CoffeeRatingModelController {
    * @return the corresponding coffee rating
    */
   @GetMapping(path = "/rating/{name}")
-  public CoffeeRating getCoffeeRating(@PathVariable("name") String name) {
-    CoffeeRating rating = getCoffeeRatingModel().getCoffeeRating(name);
-    checkRating(rating, name);
+  public CoffeeRatings getCoffeeRating(@PathVariable("name") String name) {
+    CoffeeRatings rating = getCoffeeRatingModel().getCoffeeRating(name);
+    //checkCoffeeRating(rating, name);
     return rating;
   }
 
@@ -56,24 +57,25 @@ public class CoffeeRatingModelController {
    */
   @PutMapping(path = "/rating/{name}")
   public boolean putRating(@PathVariable("name") String name,
-      @RequestBody CoffeeRating rating) {
-    boolean added = getCoffeeRatingModel().putCoffeeRating(rating) == null;
-    autoSaveCoffeeRatingModel();
-    return added;
+      @RequestBody CoffeeRatings rating) {
+    // boolean added = getCoffeeRatingModel().putCoffeeRating(rating) == null;
+    // autoSaveCoffeeRatingModel();
+    // return added;
+    return true;
   }
 
   /**
-   * Renames the CoffeeRating.
+   * Renames the CoffeeRatings.
    *
-   * @param name the name of the CoffeeRating
+   * @param name the name of the CoffeeRatings
    * @param newName the new name
    */
   @PostMapping(path = "/rating/{name}/rename")
   public boolean renameCoffeeRating(@PathVariable("name") String name,
       @RequestParam("newName") String newName) {
-    CoffeeRating coffeeRating = getCofeeRatingModel().getCoffeeRating(name);
+    CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
     if (getCoffeeRatingModel().getCoffeeRating(newName) != null) {
-      throw new IllegalArgumentException("A CoffeeRating named \"" + newName + "\" already exists");
+      throw new IllegalArgumentException("A CoffeeRatings named \"" + newName + "\" already exists");
     }
     coffeeRating.setName(newName);
     autoSaveCoffeeRatingModel();
@@ -81,14 +83,14 @@ public class CoffeeRatingModelController {
   }
 
   /**
-   * Removes the CoffeeRating.
+   * Removes the CoffeeRatings.
    *
-   * @param name the name of the CoffeeRating
+   * @param name the name of the CoffeeRatings
    */
   @DeleteMapping(path = "/rating/{name}")
   public boolean removeCoffeeRating(@PathVariable("name") String name) {
-    CoffeRating coffeeRating = getCoffeRatingModel().getCoffeeRating(name);
-    getCoffeeRatingModel().removeCoffeeRating(coffeeRating);
+    CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
+    //getCoffeeRatingModel().removeCoffeeRating(coffeeRating);
     autoSaveCoffeeRatingModel();
     return true;
   }

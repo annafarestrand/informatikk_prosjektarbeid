@@ -26,7 +26,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("CoffeeRatingTest.fxml"));
     final Parent root = loader.load();
     this.controller = loader.getController();
-    this.ratings = this.controller.getRatings();
+    this.ratings = this.controller.getCoffeeRatings();
     stage.setScene(new Scene(root));
     stage.show();
   }

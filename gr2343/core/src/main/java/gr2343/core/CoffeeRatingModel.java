@@ -16,7 +16,7 @@ public class CoffeeRatingModel implements Iterable<CoffeeRatings> {
     ratings.remove(rating);
   }
 
-  public CoffeeRatings getRating(String name) {
+  public CoffeeRatings getCoffeeRating(String name) {
     for (CoffeeRatings rating : ratings) {
       if (rating.getName().equals(name)) {
         return rating;

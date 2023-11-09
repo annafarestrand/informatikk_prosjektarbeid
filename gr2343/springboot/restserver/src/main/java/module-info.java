@@ -1,4 +1,4 @@
-module com.gr2343.springboot.rest {
+module com.gr2343.springboot.restserver {
     requires com.fasterxml.jackson.databind;
 
     requires spring.web;

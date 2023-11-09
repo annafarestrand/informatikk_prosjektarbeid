@@ -62,15 +62,15 @@ public class CoffeeRatingController {
         return model;
     }
 
-    protected CoffeeRatings getRatings() {
-        return model.getRating("ratings");
+    protected CoffeeRatings getCoffeeRatings() {
+        return model.getCoffeeRating("ratings");
     }
 
     protected void updateRatingsView() {
         // oppdaterer view
         List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
         viewRatings.clear();
-        CoffeeRatings ratings = model.getRating("ratings");
+        CoffeeRatings ratings = model.getCoffeeRating("ratings");
         if (ratings != null) {
             viewRatings.addAll(ratings.getItems());
         }
@@ -95,7 +95,7 @@ public class CoffeeRatingController {
             updateRatingsView();
         } else {
             // Få CoffeeRatings object for "ratings"
-            CoffeeRatings ratings = model.getRating("ratings");
+            CoffeeRatings ratings = model.getCoffeeRating("ratings");
 
             if (ratings == null) {
                 // If "ratings" doesn't exist in the model, create it
@@ -129,7 +129,7 @@ public class CoffeeRatingController {
         // sletter en rating
         CoffeeRatingItem item = ratingsView.getSelectionModel().getSelectedItem();
         if (item != null) {
-            getRatings().removeCoffeeRatingItem(item);
+            getCoffeeRatings().removeCoffeeRatingItem(item);
             ratingsView.getItems().remove(item);
         }
     }

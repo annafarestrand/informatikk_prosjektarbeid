@@ -131,6 +131,6 @@
   <modules>
 	<module>core</module>
 	<module>fxui</module>
-	<module>springboot</module>
+	<module>springboot/restserver</module>
   </modules>
 </project>
