@@ -44,7 +44,6 @@ public class CoffeeRatingModelController {
   @GetMapping(path = "/rating/{name}")
   public CoffeeRatings getCoffeeRating(@PathVariable("name") String name) {
     CoffeeRatings rating = getCoffeeRatingModel().getCoffeeRating(name);
-    //checkCoffeeRating(rating, name);
     return rating;
   }
 
@@ -56,12 +55,11 @@ public class CoffeeRatingModelController {
    * @return true if it was added, false if it replaced
    */
   @PutMapping(path = "/rating/{name}")
-  public boolean putRating(@PathVariable("name") String name,
+  public boolean putCoffeeRating(@PathVariable("name") String name,
       @RequestBody CoffeeRatings rating) {
-    // boolean added = getCoffeeRatingModel().putCoffeeRating(rating) == null;
-    // autoSaveCoffeeRatingModel();
-    // return added;
-    return true;
+    boolean added = getCoffeeRatingModel().putCoffeeRating(rating) == null;
+    autoSaveCoffeeRatingModel();
+    return added;
   }
 
   /**
@@ -75,7 +73,7 @@ public class CoffeeRatingModelController {
       @RequestParam("newName") String newName) {
     CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
     if (getCoffeeRatingModel().getCoffeeRating(newName) != null) {
-      throw new IllegalArgumentException("A CoffeeRatings named \"" + newName + "\" already exists");
+      throw new IllegalArgumentException("A CoffeeRating named \"" + newName + "\" already exists");
     }
     coffeeRating.setName(newName);
     autoSaveCoffeeRatingModel();
@@ -90,7 +88,7 @@ public class CoffeeRatingModelController {
   @DeleteMapping(path = "/rating/{name}")
   public boolean removeCoffeeRating(@PathVariable("name") String name) {
     CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
-    //getCoffeeRatingModel().removeCoffeeRating(coffeeRating);
+    getCoffeeRatingModel().removeRating(coffeeRating);
     autoSaveCoffeeRatingModel();
     return true;
   }

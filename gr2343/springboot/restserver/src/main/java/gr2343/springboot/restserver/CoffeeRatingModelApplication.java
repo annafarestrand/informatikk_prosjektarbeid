@@ -1,12 +1,10 @@
 package gr2343.springboot.restserver;
 
 import com.fasterxml.jackson.databind.Module;
-import java.util.EnumSet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import gr2343.json.CoffeeRatingsPersistence;
-//import gr2343.json.CoffeeRatingsPersistence.CoffeeRatingModel;
 
 /**
  * The Spring application.
@@ -14,10 +12,10 @@ import gr2343.json.CoffeeRatingsPersistence;
 @SpringBootApplication
 public class CoffeeRatingModelApplication {
 
-  //@Bean
-  //public Module objectMapperModule() {
-    //return CoffeeRatingsPersistence.createJacksonModule(EnumSet.of(CoffeeRatingModelParts.LISTS));
-  //}
+  @Bean
+  public Module objectMapperModule() {
+    return CoffeeRatingsPersistence.createJacksonModule();
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(CoffeeRatingModelApplication.class, args);

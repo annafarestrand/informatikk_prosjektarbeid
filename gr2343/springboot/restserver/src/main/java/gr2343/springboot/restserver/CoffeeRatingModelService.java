@@ -20,7 +20,7 @@ import gr2343.json.CoffeeRatingsPersistence;
 public class CoffeeRatingModelService {
 
   private CoffeeRatingModel coffeeRatingModel;
-  private CoffeeRatingsPersistence CoffeeRatingsPersistence;
+  private CoffeeRatingsPersistence coffeeRatingsPersistence;
 
   /**
    * Initializes the service with a specific coffeeRatingModel.
@@ -29,8 +29,8 @@ public class CoffeeRatingModelService {
    */
   public CoffeeRatingModelService(CoffeeRatingModel coffeeRatingModel) {
     this.coffeeRatingModel = coffeeRatingModel;
-    this.CoffeeRatingsPersistence = new CoffeeRatingsPersistence();
-    // CoffeeRatingsPersistence.setSaveFile("springbootserver-coffeerating.json");
+    this.coffeeRatingsPersistence = new CoffeeRatingsPersistence();
+    this.coffeeRatingsPersistence.setSaveFile("springbootserver-coffeerating.json");
   }
 
   public CoffeeRatingModelService() {
@@ -46,26 +46,24 @@ public class CoffeeRatingModelService {
   }
 
   private static CoffeeRatingModel createDefaultCoffeeRatingModel() {
-    CoffeeRatingsPersistence CoffeeRatingsPersistence = new CoffeeRatingsPersistence();
-    // URL url = CoffeeRatingModelService.class.getResource("default-coffeeratingmodel.json");
-    // if (url != null) {
-    //   try (Reader reader = new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)) {
-    //     return CoffeeRatingsPersistence.readCoffeeRatingModel(reader);
-    //   } catch (IOException e) {
-    //     System.out.println("Couldn't read default-coffeemodel.json, so rigging CoffeeModel manually ("
-    //         + e + ")");
-    //   }
-    // }
+    CoffeeRatingsPersistence coffeeRatingsPersistence = new CoffeeRatingsPersistence();
+    URL url = CoffeeRatingModelService.class.getResource("default-coffeeratingmodel.json");
+    if (url != null) {
+      try (Reader reader = new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)) {
+        return coffeeRatingsPersistence.readCoffeeRatingModel(reader);
+      } catch (IOException e) {
+        System.out.println("Couldn't read default-coffeemodel.json, so rigging CoffeeModel manually ("
+            + e + ")");
+      }
+    }
     CoffeeRatingModel coffeeRatingModel = new CoffeeRatingModel();
-    // CoffeeRatings coffeeRating1 = new CoffeeRatings("coffee1");
-     CoffeeRatings coffeeRating1 = new CoffeeRatings();
-     coffeeRating1.setName("coffee1");
+    CoffeeRatings coffeeRating1 = new CoffeeRatings();
+    coffeeRating1.setName("coffee1");
     coffeeRating1.addCoffeeRatingItem(new CoffeeRatingItem());
-    // coffeeRatingModel.addCoffeeRating(coffeeRating1);
-    // coffeeRatingModel.addCoffeeRating(new CoffeeRatings("coffee2"));
+    coffeeRatingModel.addRating(coffeeRating1);
     CoffeeRatings coffeeRating2 = new  CoffeeRatings();
     coffeeRating2.setName("coffee2");
-    // coffeeRatingModel.addCoffeeRating(coffeeRating2);
+    coffeeRatingModel.addRating(coffeeRating2);
     return coffeeRatingModel;
   }
 
@@ -74,12 +72,12 @@ public class CoffeeRatingModelService {
    * Should be called after each update.
    */
   public void autoSaveCoffeeRatingModel() {
-    if (CoffeeRatingsPersistence != null) {
-      // try {
-      //   CoffeeRatingsPersistence.saveCoffeeRatingModel(this.coffeeRatingModel);
-      // } catch (IllegalStateException | IOException e) {
-      //   System.err.println("Couldn't auto-save CoffeeRatingModel: " + e);
-      // }
+    if (coffeeRatingsPersistence != null) {
+      try {
+        coffeeRatingsPersistence.saveCoffeeRatingModel(this.coffeeRatingModel);
+      } catch (IllegalStateException | IOException e) {
+        System.err.println("Couldn't auto-save CoffeeRatingModel: " + e);
+      }
     }
   }
 }

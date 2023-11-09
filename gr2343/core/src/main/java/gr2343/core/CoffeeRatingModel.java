@@ -12,7 +12,7 @@ public class CoffeeRatingModel implements Iterable<CoffeeRatings> {
     ratings.add(rating);
   }
 
-  public void removeRatings(CoffeeRatings rating) {
+  public void removeRating(CoffeeRatings rating) {
     ratings.remove(rating);
   }
 
@@ -28,5 +28,14 @@ public class CoffeeRatingModel implements Iterable<CoffeeRatings> {
   @Override
   public Iterator<CoffeeRatings> iterator() {
     return ratings.iterator();
+  }
+
+  public CoffeeRatings putCoffeeRating(CoffeeRatings rating) {
+    CoffeeRatings oldRating = getCoffeeRating(rating.getName());
+    if (oldRating != null) {
+      removeRating(oldRating);
+    }
+    addRating(rating);
+    return oldRating;
   }
 }
