@@ -33,6 +33,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
 
   @BeforeEach
   public void setupItems() {
+    ratings = new CoffeeRatings();
     item1 = new CoffeeRatingItem();
     item1.setDescription("Kaffe på Sit Kafe");
     item1.setRating(5);
