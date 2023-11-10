@@ -38,4 +38,12 @@ public class CoffeeRatingModel implements Iterable<CoffeeRatings> {
     addRating(rating);
     return oldRating;
   }
+
+  public boolean hasCoffeeRating(String name) {
+    return getCoffeeRating(name) != null;
+  }
+
+  public boolean isValidCoffeeRatingName(String name) {
+    return name != null && !name.isEmpty() && !hasCoffeeRating(name);
+  }
 }

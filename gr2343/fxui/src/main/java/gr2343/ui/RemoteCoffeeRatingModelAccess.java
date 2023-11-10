@@ -21,7 +21,7 @@ import gr2343.json.CoffeeRatingsPersistence;
  * Class that centralizes access to a TodoModel. Makes it easier to support transparent use of a
  * REST API.
  */
-public class RemoteCoffeeRatingModelAccess  {
+public class RemoteCoffeeRatingModelAccess {
 
   private final URI endpointBaseUri;
 
@@ -44,10 +44,8 @@ public class RemoteCoffeeRatingModelAccess  {
 
   private CoffeeRatingModel getCoffeeRatingModel() {
     if (coffeeRatingModel == null) {
-      HttpRequest request = HttpRequest.newBuilder(endpointBaseUri)
-          .header(ACCEPT_HEADER, APPLICATION_JSON)
-          .GET()
-          .build();
+      HttpRequest request =
+          HttpRequest.newBuilder(endpointBaseUri).header(ACCEPT_HEADER, APPLICATION_JSON).GET().build();
       try {
         final HttpResponse<String> response =
             HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
@@ -59,32 +57,6 @@ public class RemoteCoffeeRatingModelAccess  {
     return coffeeRatingModel;
   }
 
-  private boolean isDefaultSettings(CoffeeRatingSettings coffeeRatingSettings) {
-    return coffeeRatingSettings == null;
-  }
-
-  
-  @Override
-  public CoffeeRatingSettings getCoffeeRatingSettings() {
-    CoffeeRatingModel coffeeRatingModel = getCoffeeRatingModel();
-    CoffeeRatingSettings settings = coffeeRatingModel.getSettings();
-    if (isDefaultSettings(settings)) {
-      HttpRequest request = HttpRequest.newBuilder(endpointBaseUri.resolve("settings"))
-          .header(ACCEPT_HEADER, APPLICATION_JSON)
-          .GET()
-          .build();
-      try {
-        final HttpResponse<String> response =
-            HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
-        final String responseString = response.body();
-        settings = objectMapper.readValue(responseString, CoffeeRatingSettings.class);
-        coffeeRatingModel.setSettings(settings);
-      } catch (IOException | InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-    }
-    return settings;
-  }
 
   /**
    * Checks that name is valid for a (new) CoffeeRating.
@@ -92,7 +64,6 @@ public class RemoteCoffeeRatingModelAccess  {
    * @param name the (new) name
    * @return true if the name is value, false otherwise
    */
-  @Override
   public boolean isValidCoffeeRatingName(String name) {
     return getCoffeeRatingModel().isValidCoffeeRatingName(name);
   }
@@ -103,7 +74,6 @@ public class RemoteCoffeeRatingModelAccess  {
    * @param name the (new) name
    * @return true if there exists a CoffeeRating with the provided name, false otherwise
    */
-  @Override
   public boolean hasCoffeeRating(String name) {
     return getCoffeeRatingModel().hasCoffeeRating(name);
   }
@@ -113,7 +83,6 @@ public class RemoteCoffeeRatingModelAccess  {
    *
    * @return the names of the CoffeeRatings.
    */
-  @Override
   public Collection<String> getCoffeeRatingNames() {
     Collection<String> allNames = new ArrayList<>();
     getCoffeeRatingModel().forEach(coffeeRating -> allNames.add(coffeeRating.getName()));
@@ -134,22 +103,20 @@ public class RemoteCoffeeRatingModelAccess  {
    * @param name the CoffeeRating's name
    * @return the CoffeeRating with the given name
    */
-  @Override
   public CoffeeRatings getCoffeeRating(String name) {
     System.out.println("getCoffeeRating(String name) :" + coffeeRatingUri(name));
     CoffeeRatings oldCoffeeRating = this.coffeeRatingModel.getCoffeeRating(name);
     // if existing list has no coffee rating items, try to (re)load
-    if (oldCoffeeRating == null || (! (oldCoffeeRating instanceof CoffeeRating))) {
+    if (oldCoffeeRating == null || (!(oldCoffeeRating instanceof CoffeeRatings))) {
       HttpRequest request =
-          HttpRequest.newBuilder(coffeeRatingUri(name))
-              .header(ACCEPT_HEADER, APPLICATION_JSON).GET().build();
+          HttpRequest.newBuilder(coffeeRatingUri(name)).header(ACCEPT_HEADER, APPLICATION_JSON).GET().build();
       try {
         final HttpResponse<String> response =
             HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
         String responseString = response.body();
         System.out.println("getCoffeeRating(" + name + ") response: " + responseString);
         CoffeeRatings coffeeRating = objectMapper.readValue(responseString, CoffeeRatings.class);
-        if (! (coffeeRating instanceof CoffeeRatings)) {
+        if (!(coffeeRating instanceof CoffeeRatings)) {
           CoffeeRatings newCoffeeRating = new CoffeeRatings();
           newCoffeeRating.setName(coffeeRating.getName());
           coffeeRating = newCoffeeRating;
@@ -165,11 +132,9 @@ public class RemoteCoffeeRatingModelAccess  {
   private void putCoffeeRating(CoffeeRatings coffeeRating) {
     try {
       String json = objectMapper.writeValueAsString(coffeeRating);
-      HttpRequest request = HttpRequest.newBuilder(coffeeRatingUri(coffeeRating.getName()))
-          .header(ACCEPT_HEADER, APPLICATION_JSON)
-          .header(CONTENT_TYPE_HEADER, APPLICATION_JSON)
-          .PUT(BodyPublishers.ofString(json))
-          .build();
+      HttpRequest request =
+          HttpRequest.newBuilder(coffeeRatingUri(coffeeRating.getName())).header(ACCEPT_HEADER, APPLICATION_JSON)
+              .header(CONTENT_TYPE_HEADER, APPLICATION_JSON).PUT(BodyPublishers.ofString(json)).build();
       final HttpResponse<String> response =
           HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
       String responseString = response.body();
@@ -187,7 +152,6 @@ public class RemoteCoffeeRatingModelAccess  {
    *
    * @param coffeeRating the coffeeRating
    */
-  @Override
   public void addCoffeeRating(CoffeeRatings coffeeRating) {
     putCoffeeRating(coffeeRating);
   }
@@ -197,19 +161,16 @@ public class RemoteCoffeeRatingModelAccess  {
    *
    * @param name the name of the CoffeeRating to remove
    */
-  @Override
   public void removeCoffeeRating(String name) {
     try {
-      HttpRequest request = HttpRequest.newBuilder(coffeeRatingUri(name))
-          .header(ACCEPT_HEADER, APPLICATION_JSON)
-          .DELETE()
-          .build();
+      HttpRequest request =
+          HttpRequest.newBuilder(coffeeRatingUri(name)).header(ACCEPT_HEADER, APPLICATION_JSON).DELETE().build();
       final HttpResponse<String> response =
           HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
       String responseString = response.body();
       Boolean removed = objectMapper.readValue(responseString, Boolean.class);
       if (removed != null) {
-        coffeeRatingModel.removeCoffeeRating(coffeeRatingModel.getCoffeeRating(name));
+        coffeeRatingModel.removeRating(coffeeRatingModel.getCoffeeRating(name));
       }
     } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e);
@@ -222,15 +183,11 @@ public class RemoteCoffeeRatingModelAccess  {
    * @param oldName the name of the coffee rating to change
    * @param newName the new name
    */
-  @Override
   public void renameCoffeeRating(String oldName, String newName) {
     try {
-      HttpRequest request = HttpRequest.newBuilder(
-            coffeeRatingUri(oldName).resolve(uriParam(oldName) + "/rename"))
-          .header(ACCEPT_HEADER, APPLICATION_JSON)
-          .header(CONTENT_TYPE_HEADER, APPLICATION_FORM_URLENCODED)
-          .POST(BodyPublishers.ofString("newName=" + uriParam(newName)))
-          .build();
+      HttpRequest request = HttpRequest.newBuilder(coffeeRatingUri(oldName).resolve(uriParam(oldName) + "/rename"))
+          .header(ACCEPT_HEADER, APPLICATION_JSON).header(CONTENT_TYPE_HEADER, APPLICATION_FORM_URLENCODED)
+          .POST(BodyPublishers.ofString("newName=" + uriParam(newName))).build();
       final HttpResponse<String> response =
           HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
       String responseString = response.body();
@@ -244,12 +201,11 @@ public class RemoteCoffeeRatingModelAccess  {
   }
 
   /**
-   * Notifies that the coffee rating has changed, e.g. coffee rating items
-   * have been mutated, added or removed.
+   * Notifies that the coffee rating has changed, e.g. coffee rating items have been mutated, added or
+   * removed.
    *
    * @param coffeeRating the coffee rating that has changed
    */
-  @Override
   public void notifyCoffeeRatingChanged(CoffeeRatings coffeeRating) {
     putCoffeeRating(coffeeRating);
   }

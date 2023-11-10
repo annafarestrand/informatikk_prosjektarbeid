@@ -65,7 +65,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine> 	
-						--add-opens com.gr2343.ui/gr2343.ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+						--add-opens gr2343.fxui/gr2343.ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
 						@{jaCoCoArgLine}
 					</argLine>
 				</configuration>

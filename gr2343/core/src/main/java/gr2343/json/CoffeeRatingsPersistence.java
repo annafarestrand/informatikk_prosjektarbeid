@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.EnumSet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import gr2343.core.CoffeeRatingModel;
@@ -24,7 +25,7 @@ public class CoffeeRatingsPersistence {
     mapper.registerModule(new CoffeeRatingModule());
   }
 
-  public CoffeeRatingModel readCoffeeRatings(String ratingsWithItems) throws IOException { 
+  public CoffeeRatingModel readCoffeeRatings(String ratingsWithItems) throws IOException {
     return mapper.readValue(ratingsWithItems, CoffeeRatingModel.class);
   }
 
@@ -35,6 +36,11 @@ public class CoffeeRatingsPersistence {
   public static SimpleModule createJacksonModule() {
     return new CoffeeRatingModule();
   }
+
+  public static ObjectMapper createObjectMapper() {
+    return new ObjectMapper().registerModule(createJacksonModule());
+  }
+
 
   public CoffeeRatingModel readCoffeeRatingModel(Reader reader) throws IOException {
     return mapper.readValue(reader, CoffeeRatingModel.class);
