@@ -67,7 +67,7 @@ public class CoffeeRatingAppController {
       // setter opp data
       Reader reader = null;
       if (sampleCoffeeRatingModelResource != null) {
-        // try sample todo list from resources instead
+        // try sample coffee rating from resources instead
         URL url = getClass().getResource(sampleCoffeeRatingModelResource);
         if (url != null) {
           try {
@@ -102,8 +102,7 @@ public class CoffeeRatingAppController {
     }
     if (coffeeRatingModel == null) {
       coffeeRatingModel = new CoffeeRatingModel();
-      CoffeeRatings coffeeRatings = new CoffeeRatings("Helgehandling", new TodoItem().text("Øl"),
-          new TodoItem().text("Pizza"));
+      CoffeeRatings coffeeRatings = new CoffeeRatings();
       coffeeRatings.setName("Vurderinger");
       CoffeeRatingItem coffeeRatingItem = new CoffeeRatingItem();
       coffeeRatingItem.setDescription("Kaffemaskina på jobben");
@@ -130,8 +129,8 @@ public class CoffeeRatingAppController {
     if (coffeeRatingModelAccess == null) {
       this.coffeeRatingsPersistence = new CoffeeRatingsPersistence();
       coffeeRatingsPersistence.setSaveFile(userCoffeeRatingModelPath);
-      DirectCoffeeRatingModelAccess directAccess = new DirectTodoModelAccess(getInitialTodoModel());
-      directAccess.setTodoPersistence(coffeeRatingsPersistence);
+      DirectCoffeeRatingModelAccess directAccess = new DirectCoffeeRatingModelAccess(getInitialCoffeeRatingModel());
+      directAccess.setCoffeeRatingPersistence(coffeeRatingsPersistence);
       coffeeRatingModelAccess = directAccess;
     }
     coffeeRatingModelViewController.setCoffeeRatingModelAccess(coffeeRatingModelAccess);
