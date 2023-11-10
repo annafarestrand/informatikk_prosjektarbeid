@@ -49,6 +49,14 @@ public class CoffeeRatingAppTest extends ApplicationTest {
   }
 
   @Test
+  public void testGetModel() {
+      // henter ut modellen
+      CoffeeRatingModel model = controller.getModel();
+      // sjekker at modellen blir hentet
+      assertNotNull(model, "Cannot get model.");
+  }
+
+  @Test
   public void testRatingsView_initialItems() {
     final ListView<CoffeeRatingItem> ratingsView = lookup("#ratingsView").query();
     checkCoffeeRatingItems(ratingsView.getItems(), item1, item2);
@@ -57,7 +65,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
 
   @Test
   public void testNewCoffeRating() {
-    String newDescription = "Kaffe fra kantina";
+    String newDescription = "Kantina";
     String newRating = "4";
     clickOn("#newDescriptionText").write(newDescription);
     clickOn("#newRatingText").write(newRating);
@@ -102,9 +110,27 @@ public class CoffeeRatingAppTest extends ApplicationTest {
   }
 
   @Test
+  private void testAlert_DescriptionNotValid() {
+    // Legger inn en ugyldig beskrivelse
+    String newDescription = "48902";
+    String newRating = "4";
+
+    // skriver inn description og rating i tekstfeltene
+    clickOn("#newDescriptionText").write(newDescription);
+    clickOn("#newRatingText").write(newRating);
+
+    // prøver å lagre
+    clickOn("#newCoffeeRatingButton");
+
+    // sjekke at det kommer opp en alert med riktig navn 
+
+
+  }
+
+  @Test
   public void testDeleteCoffeRating() {
     // legger inn en rating som kan slettes
-    String newDescription = "Fra den gode kafeen";
+    String newDescription = "Nabo-kaféen";
     String newRating = "5";
 
     // skriver inn description og rating
