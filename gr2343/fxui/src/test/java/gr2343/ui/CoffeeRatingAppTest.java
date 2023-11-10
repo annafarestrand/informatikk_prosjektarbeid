@@ -45,8 +45,9 @@ public class CoffeeRatingAppTest extends ApplicationTest {
 
   @Test
   public void testController_intital() {
-    // TODO: sjekk at ratings er initialisert og matcher item1 og item2, funker ikke med model
-    assertNotNull(this.controller);
+    assertNotNull(this.controller, "Controller is not initialized");
+    assertNotNull(this.ratings, "Ratings in controller is not initialized");
+    checkCoffeeRatingListItems(item1, item2);
   }
 
   @Test
