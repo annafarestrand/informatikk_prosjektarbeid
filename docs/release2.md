@@ -31,3 +31,9 @@ This is documentet with the footer "Co-Authored-By: name" in each commit. We've 
 We started out with adding some new functionality to the app, but later discovered it was not a requirement in this release, and reverted the updates (to save ourselves from the work of writing tests and debugging).
 
 As for comments in the code, we have only addded a few comments. This is because we focused on making the code simple and understandable.
+
+## Design
+
+The design of the app in this release is shown in the following picture.
+
+![App design of release 2](../docs/images/design-release2.png)
