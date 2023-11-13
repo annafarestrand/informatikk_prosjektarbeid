@@ -51,17 +51,16 @@ public class CoffeeRatingController {
 
 
     @FXML
-    public void initialize() {
-        // kobler data til view
+    public void initialize() { // kobler data til view
         updateRatingsView();
         ratingsView.setCellFactory(ratingsView -> new CoffeeRatingListCell());
     }
 
-    protected CoffeeRatingModel getModel() {
+    protected CoffeeRatingModel getModel() { // henter ut model
         return model;
     }
 
-    protected CoffeeRatings getRatings() {
+    protected CoffeeRatings getRatings() { 
         return model.getRating("ratings");
     }
 
@@ -93,11 +92,11 @@ public class CoffeeRatingController {
             // Oppdater visningen
             updateRatingsView();
         } else {
-            // Få CoffeeRatings object for "ratings"
+            // Henter ut CoffeeRatings objektet med navn "ratings"
             CoffeeRatings ratings = model.getRating("ratings");
 
             if (ratings == null) {
-                // If "ratings" doesn't exist in the model, create it
+                // hvis det ikke finnes en "ratings" lager vi en ny
                 ratings = new CoffeeRatings();
                 ratings.setName("ratings");
                 model.addRating(ratings);
@@ -108,7 +107,7 @@ public class CoffeeRatingController {
             item.setDescription(newDescriptionText.getText());
             item.setRating(Integer.parseInt(newRatingText.getText()));
 
-            // Add the new item to the ratings
+            /// Legg til nytt item i ratings
             ratings.addCoffeeRatingItem(item);
 
             ratingsView.getItems().add(item);
@@ -135,11 +134,11 @@ public class CoffeeRatingController {
 
     @FXML
     public void handleUpdateRatingAction() {
-        // Henter det valgte elementet som skal oppdateres
+        // Henter det valgte itemet som skal oppdateres
         selectedItemForUpdate = ratingsView.getSelectionModel().getSelectedItem();
 
         if (selectedItemForUpdate != null) {
-            // Fyller inn midlertidige tekstfelt med eksisterende data for redigering
+            // Fyller inn midlertidige tekstfelt med eksisterende data
             newDescriptionText.setText(selectedItemForUpdate.getDescription());
             newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
         }

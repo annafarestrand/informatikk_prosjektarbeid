@@ -12,7 +12,7 @@ public class CoffeeRatingListCell extends ListCell<CoffeeRatingItem> {
       setText(null);
       setGraphic(null);
     } else {
-      setText(item.getDescription() + ", " + item.getRating() + "/5"); // bestemmer hvordan data vises i appen
+      setText(item.getDescription() + ", " + item.getRating() + "/5"); // bestemmer hvordan data vises i appen (listView)
       setGraphic(null);
     }
   }

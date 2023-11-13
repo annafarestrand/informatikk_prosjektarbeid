@@ -11,19 +11,19 @@ public class CoffeeRatingItem {
                 "/5";
     }
 
-    public String getDescription() {
+    public String getDescription() { // henter ut beskrivelsen til et item
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description) { // setter beskrivelsen til et item
         this.description = description;
     }
 
-    public int getRating() {
+    public int getRating() { // henter ut ratingen til et item
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(int rating) { // setter ratingen til et item
         this.rating = rating;
     }
 }

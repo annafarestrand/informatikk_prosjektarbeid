@@ -51,7 +51,7 @@ public class CoffeeRatingsTest {
     }
 
     @Test
-    public void testRemoveCoffeeRatingItem_returnsEmptyList() { // tester at et element kan fjernes fra CoffeeeRating
+    public void testRemoveCoffeeRatingItem_returnsEmptyList() { // tester at et element kan fjernes fra CoffeeRatings
         CoffeeRatings newRating = new CoffeeRatings();
         CoffeeRatingItem newItem = new CoffeeRatingItem();
 

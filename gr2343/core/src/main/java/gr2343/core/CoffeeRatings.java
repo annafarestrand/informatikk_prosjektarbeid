@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CoffeeRatings implements Iterable<CoffeeRatingItem> {
 
-    private String name;
+    private String name; 
 
     public String getName() {
         return name;
@@ -18,6 +18,7 @@ public class CoffeeRatings implements Iterable<CoffeeRatingItem> {
 
     private List<CoffeeRatingItem> items = new ArrayList<CoffeeRatingItem>();
 
+    // videre brukes "kaffeopplevelse" om et CoffeeRatingItem med en rating og description
 
     // legger til en "kaffeopplevelse" i listen
     public void addCoffeeRatingItem(CoffeeRatingItem item) {
