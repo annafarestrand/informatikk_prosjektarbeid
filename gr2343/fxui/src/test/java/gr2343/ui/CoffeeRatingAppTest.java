@@ -7,6 +7,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import gr2343.core.CoffeeRatingItem;
+import gr2343.core.CoffeeRatingModel;
 import gr2343.core.CoffeeRatings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
