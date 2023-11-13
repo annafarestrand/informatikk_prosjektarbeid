@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import java.io.IOException;
 
+// denne klassen brukes til å hente ut en JSON-streng og oversette det til et javaobjekt (et CoffeeRatings)
+
 public class CoffeeRatingsDeserializer extends JsonDeserializer<CoffeeRatings> {
 
   private CoffeeRatingItemDeserializer itemDeserializer = new CoffeeRatingItemDeserializer();

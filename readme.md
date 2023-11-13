@@ -6,6 +6,7 @@
 
 This project was developed in the course IT1901 at NTNU.
 This repository contains Coffee rating, a personal app for logging and rating coffee.
+More info about the project, including "how-to-run" is found in gr2343/readme.md
 
 ## Folder structure
 

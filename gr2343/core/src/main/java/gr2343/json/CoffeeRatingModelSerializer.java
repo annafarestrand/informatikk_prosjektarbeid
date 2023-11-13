@@ -7,6 +7,8 @@ import java.io.IOException;
 import gr2343.core.CoffeeRatingModel;
 import gr2343.core.CoffeeRatings;
 
+// denne klassen oversetter en CoffeeRatingModel fra java-objekt til en JSON-streng
+
 class CoffeeRatingModelSerializer extends JsonSerializer<CoffeeRatingModel> {
 
   /*
