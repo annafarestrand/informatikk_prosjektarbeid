@@ -31,3 +31,8 @@ We have usually written the tests after writing the code, but sometimes we have 
 - pakkediagram
 - klassediagram
 - sekvensdiagram
+
+## Design
+With the new functionality delete and update we added new buttons ('Slett' and 'Oppdater'). We also made it more intuitive for the user.
+
+![App design of release 3](../docs/images/design-release3.png)
