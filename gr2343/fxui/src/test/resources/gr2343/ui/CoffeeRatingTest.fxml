@@ -8,7 +8,7 @@
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-    <Label text="Legg inn dine kaffeopplevelser her ☕" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <Label text="Legg inn kaffeopplevelser ☕" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
     
     <!-- Etikett for beskrivelse tekstfelt -->
     <HBox spacing="5">
