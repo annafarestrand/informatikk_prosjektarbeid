@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr2343.ui.CoffeeRatingController">
-   <children>
-      <fx:define>
-         <String fx:id="sampleRatingsResource" fx:value="testRatings.json"/> 
-      </fx:define>
-      <TextField fx:id="newDescriptionText" layoutX="220.0" layoutY="77.0" promptText="Hvor drakk du kaffe?" />
-      <TextField fx:id="newRatingText" layoutX="220.0" layoutY="120.0" promptText="Gi rating 1-5"/> <!-- Assigning an fx:id to the second text field -->
-      <Button fx:id="newCoffeeRatingButton" layoutX="392.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlenewCoffeeRatingAction" text="Lagre" />
-      <Button fx:id="deleteRatingButton" layoutX="392.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleDeleteRatingAction" text="Slett" />
-      <Button fx:id="updateRatingButton" layoutX="392.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleUpdateRatingAction" text="Oppdater" />
-      <ListView fx:id="ratingsView" layoutX="71.0" layoutY="170.0" prefHeight="195.0" prefWidth="238.0" />
-   </children>
-</Pane>
-
+<VBox fx:id="mainContainer" prefHeight="500.0" prefWidth="300.0" spacing="10.0" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr2343.ui.CoffeeRatingController" style="-fx-background-color: #FAFAFA;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Legg inn dine kaffeopplevelser her ☕" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    
+    <!-- Etikett for beskrivelse tekstfelt -->
+    <HBox spacing="5">
+        <Label text="Beskrivelse:" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="newDescriptionText" promptText="Hvor drakk du kaffe?" maxWidth="Infinity"/>
+    </HBox>
+    
+    <!-- Etikett for rating tekstfelt -->
+    <HBox spacing="5">
+        <Label text="Rating:" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="newRatingText" promptText="Gi rating 1-5" maxWidth="Infinity"/>
+    </HBox>
+    
+    <Button fx:id="newCoffeeRatingButton" onAction="#handlenewCoffeeRatingAction" text="Lagre" maxWidth="Infinity"/>
+    <Button fx:id="updateRatingButton" onAction="#handleUpdateRatingAction" text="Oppdater" maxWidth="Infinity"/>
+    <Button fx:id="deleteRatingButton" onAction="#handleDeleteRatingAction" text="Slett" maxWidth="Infinity"/>
+    <Label text="Mine kaffeopplevelser:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+    <ListView fx:id="ratingsView" VBox.vgrow="ALWAYS" prefHeight="250.0" maxWidth="Infinity"/>
+</VBox>
