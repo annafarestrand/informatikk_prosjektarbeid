@@ -91,9 +91,9 @@
                     <noHeaderFiles>true</noHeaderFiles>
                     <stripDebug>true</stripDebug>
                     <noManPages>true</noManPages>
-                    <launcher>todolistfx</launcher>
-                    <jlinkImageName>todolistfx</jlinkImageName>
-                    <jlinkZipName>todolistfx</jlinkZipName>
+                    <launcher>coffeerating</launcher>
+                    <jlinkImageName>coffeerating</jlinkImageName>
+                    <jlinkZipName>coffeerating</jlinkZipName>
                 </configuration>
             </plugin>
 
@@ -103,24 +103,24 @@
                 <artifactId>jpackage-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-                    <name>TodoListFX</name>
+                    <name>CoffeeRating</name>
                     <appVersion>1.0.0</appVersion>
                     <vendor>it1901</vendor>
                     <destination>target/dist</destination>
-                    <module>todolist.ui/todolist.ui.TodoApp</module>
-                    <runtimeImage>target/todolistfx</runtimeImage>
+                    <module>gr2343.ui/gr2343.ui.CoffeeRatingApp</module>
+                    <runtimeImage>target/coffeerating</runtimeImage>
                     <javaOptions>
                         <option>-Dfile.encoding=UTF-8</option>
                     </javaOptions>
                     <!-- linux options --> 
                     <linuxShortcut>true</linuxShortcut>
-                    <linuxMenuGroup>TodoListFX</linuxMenuGroup>
+                    <linuxMenuGroup>CoffeeRating</linuxMenuGroup>
 
                     <!-- windows options --> 
                     <winDirChooser>true</winDirChooser>
                     <winShortcut>true</winShortcut>
                     <winMenu>true</winMenu>
-                    <winMenuGroup>TodoListFX</winMenuGroup>
+                    <winMenuGroup>CoffeeRating</winMenuGroup>
                 </configuration>
             </plugin>
 
