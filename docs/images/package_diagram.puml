@@ -1,10 +1,10 @@
 @startuml package_diagram
 folder CoffeeRating #DDDDDD{
-    component Core #DDDDDD{
+    component core #DDDDDD{
         package gr2343.core #FFFFCC{
             
         }
-        package gr2343.json #FFFFCC{
+        package gr2343.json #FFFFCC{ 
             
         }
     }
@@ -21,6 +21,9 @@ folder CoffeeRating #DDDDDD{
 
     component resources {
         package fxml{
+
+        }
+        package javafx{
 
         }
     }
