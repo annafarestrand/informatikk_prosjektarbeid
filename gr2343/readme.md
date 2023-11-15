@@ -27,3 +27,4 @@ The maven build requires Maven version 3.8.1, Java version 17, JavaFX version 20
 ## User stories
 
 - As a user, I want to review the coffee I'm drinking.
+- As a user, I want to edit my ratings; to delete or update them.
