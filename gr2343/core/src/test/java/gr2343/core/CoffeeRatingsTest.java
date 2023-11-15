@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class CoffeeRatingsTest {
+    // her har vi initialisert newItem og newRating i hver test; det hadde også vært mulig å sette disse i en egen metode setUpItems og brukt BeforeAll
 
     @Test
     public void testSetAndGetDescription_returnsDescription() { // tester foerst at get og set for description virker
