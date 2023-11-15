@@ -86,8 +86,44 @@
 				<version>0.0.8</version>
 				<configuration>
 					<mainClass>gr2343.ui.CoffeeRatingApp</mainClass>
-				</configuration>
-			</plugin>
+				<!-- rest of options are for jlink -->
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <noManPages>true</noManPages>
+                    <launcher>todolistfx</launcher>
+                    <jlinkImageName>todolistfx</jlinkImageName>
+                    <jlinkZipName>todolistfx</jlinkZipName>
+                </configuration>
+            </plugin>
+
+            <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <name>TodoListFX</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>it1901</vendor>
+                    <destination>target/dist</destination>
+                    <module>todolist.ui/todolist.ui.TodoApp</module>
+                    <runtimeImage>target/todolistfx</runtimeImage>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                    <!-- linux options --> 
+                    <linuxShortcut>true</linuxShortcut>
+                    <linuxMenuGroup>TodoListFX</linuxMenuGroup>
+
+                    <!-- windows options --> 
+                    <winDirChooser>true</winDirChooser>
+                    <winShortcut>true</winShortcut>
+                    <winMenu>true</winMenu>
+                    <winMenuGroup>TodoListFX</winMenuGroup>
+                </configuration>
+            </plugin>
+
 			<!-- adding checkstyle-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
