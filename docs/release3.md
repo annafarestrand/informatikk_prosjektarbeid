@@ -7,6 +7,9 @@ The development method is the same as in release1 and release2, the only differe
 
 ## REST-API
 
+## Shippable Product
+We have configured the project for shippable product using jlink and jpackage. To use this you need to install wix tools and then open by using the commandos ‘mvn clean install -DskipTests’, then ‘mvn javafx:jlink -f ./fxui/pom.xml’ and then ‘mvn jpackage:jpackage -f ./fxui/pom.xml’. 
+
 ## The modules?
 
 ## Functionality
@@ -23,7 +26,7 @@ One of the reasons we don't have 100% test coverage in FXUI is that we don't hav
 
 Another reason is that we have 68% test coverage on the controller (CoffeeRatingController). This is because we haven't been able to test whether the pointer clicks on an item in our list, and then updates or deletes the associated item. However, we know that this works when the app is running, as we have tested it manually. Therefore, we believe it wasn't worthwhile to spend a lot of time on this and instead focus on other parts of the code.
 
-We have also used SpotBugs and CheckStyle. Their task is to improve code quality, identify potential errors, and ensure that best coding practices are followed. SpotBugs' main task is to find errors and potential bugs, while CheckStyle helps maintain a consistent style and code format, which can enhance the readability and maintainability of the project. These tools work well. By running 'mvn verify,' we get that we have **0 CheckStyle violations (CHANGE)**, and by running 'mvn spotbugs:spotbugs,' we only get **two warnings (CHANGE)**.
+We have also used SpotBugs and CheckStyle. Their task is to improve code quality, identify potential errors, and ensure that best coding practices are followed. SpotBugs' main task is to find errors and potential bugs, while CheckStyle helps maintain a consistent style and code format, which can enhance the readability and maintainability of the project. These tools work well. By running 'mvn verify,' we get that we have 0 CheckStyle violations, and by running 'mvn spotbugs:spotbugs,' we only get two warnings, which we did not succeed in removing.
 
 We have usually written the tests after writing the code, but sometimes we have written tests that we realize are missing, only to find out that there was something wrong in the code. So, one could say that we have been somewhat into test-driven development, or at least test-driven debugging.
 
