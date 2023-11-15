@@ -107,7 +107,7 @@
                     <appVersion>1.0.0</appVersion>
                     <vendor>it1901</vendor>
                     <destination>target/dist</destination>
-                    <module>gr2343.ui/gr2343.ui.CoffeeRatingApp</module>
+                    <module>com.gr2343.ui/com.gr2343.ui.CoffeeRatingApp</module>
                     <runtimeImage>target/coffeerating</runtimeImage>
                     <javaOptions>
                         <option>-Dfile.encoding=UTF-8</option>
