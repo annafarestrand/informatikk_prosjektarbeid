@@ -1,5 +1,6 @@
 package gr2343.json;
 
+import gr2343.core.CoffeeRatingModel;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import gr2343.core.CoffeeRatingModel;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 public class CoffeeRatingsPersistence {

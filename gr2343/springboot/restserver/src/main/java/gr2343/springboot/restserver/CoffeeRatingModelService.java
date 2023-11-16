@@ -1,14 +1,14 @@
 package gr2343.springboot.restserver;
 
+import gr2343.core.CoffeeRatingItem;
+import gr2343.core.CoffeeRatingModel;
+import gr2343.core.CoffeeRatings;
+import gr2343.json.CoffeeRatingsPersistence;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import gr2343.core.CoffeeRatingItem;
-import gr2343.core.CoffeeRatings;
-import gr2343.core.CoffeeRatingModel;
-import gr2343.json.CoffeeRatingsPersistence;
 import org.springframework.stereotype.Service;
 
 /**

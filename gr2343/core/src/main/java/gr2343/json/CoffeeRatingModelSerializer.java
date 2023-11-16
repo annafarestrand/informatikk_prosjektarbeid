@@ -1,11 +1,11 @@
 package gr2343.json;
 
+import gr2343.core.CoffeeRatingModel;
+import gr2343.core.CoffeeRatings;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
-import gr2343.core.CoffeeRatingModel;
-import gr2343.core.CoffeeRatings;
 
 // denne klassen oversetter en CoffeeRatingModel fra java-objekt til en JSON-streng
 

@@ -2,7 +2,6 @@ package gr2343.json;
 
 import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.TreeNode;

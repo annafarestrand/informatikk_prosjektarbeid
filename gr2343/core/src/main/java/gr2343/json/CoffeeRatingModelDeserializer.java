@@ -1,5 +1,7 @@
 package gr2343.json;
 
+import gr2343.core.CoffeeRatingModel;
+import gr2343.core.CoffeeRatings;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.TreeNode;
@@ -9,8 +11,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.IOException;
-import gr2343.core.CoffeeRatingModel;
-import gr2343.core.CoffeeRatings;
 
 // denne klassen brukes til å hente ut en JSON-streng og oversette det til et javaobjekt (CoffeeRatingModel)
 
