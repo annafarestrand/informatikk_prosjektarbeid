@@ -1,20 +1,39 @@
 @startuml class_diagram
 
 class CoffeeRatingItem {
-    -description : String
-    -rating : String
+    - String description
+    - String rating
+
+    + String toString()
+    + String getDescription()
+    + void setDescription(String description)
+    + int getRating()
+    + void setRating(int rating)
 }
 
 class CoffeeRatings {
-    -name : String
-    -items : List<CoffeeRatingItem> 
+    - String name
+    - List<CoffeeRatingItem> items
+    + Iterator<CoffeeRatingItem> iterator()
+    + String getName()
+    + void setName(String name)
+    + void addCoffeeRatingItem(CoffeeRatingItem item)
+    + void removeCoffeeRatingItem(CoffeeRatingItem item) 
+    + List<CoffeeRatingItem> getItems()
 }
 
 class CoffeeRatingModel {
-    -ratings : Collection<CoffeeRatings>
+    - Collection<CoffeeRatings> ratings
+
+    + Iterator<CoffeeRatings> iterator()
+    + void addRating(CoffeeRatings rating)
+    + void removeRatings(CoffeeRatings rating)
+    + CoffeeRatings getRating(String name)
+    
+
 }
 
-CoffeeRatingItem "1" -- "*" CoffeeRatings
-CoffeeRatings "1" -- "*" CoffeeRatingModel
+CoffeeRatingItem "*" -- "1" CoffeeRatings
+CoffeeRatings "*" -- "1" CoffeeRatingModel
 
 @enduml
