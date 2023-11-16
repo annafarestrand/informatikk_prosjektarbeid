@@ -26,7 +26,6 @@ class CoffeeRatingModelDeserializer extends JsonDeserializer<CoffeeRatingModel> 
     public CoffeeRatingModel deserialize(JsonParser parser, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
         TreeNode treeNode = parser.getCodec().readTree(parser);
-        System.out.println("Raw JSON Content: " + treeNode.toString()); // Log the raw JSON content
         return deserialize((JsonNode) treeNode);
     }
 
@@ -39,7 +38,7 @@ class CoffeeRatingModelDeserializer extends JsonDeserializer<CoffeeRatingModel> 
                 for (JsonNode elementNode : ((ArrayNode) ratingsNode)) {
                     CoffeeRatings ratings = coffeeRatingsDeserializer.deserialize(elementNode);
                     if (ratings != null) {
-                        model.addRating(ratings);
+                        model.addCoffeeRating(ratings);
                     }
                 }
             }

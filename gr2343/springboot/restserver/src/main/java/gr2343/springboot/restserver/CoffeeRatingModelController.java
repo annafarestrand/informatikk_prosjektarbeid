@@ -1,14 +1,11 @@
 package gr2343.springboot.restserver;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import gr2343.core.CoffeeRatings;
 import gr2343.core.CoffeeRatingModel;
@@ -62,35 +59,5 @@ public class CoffeeRatingModelController {
     return added;
   }
 
-  /**
-   * Renames the CoffeeRatings.
-   *
-   * @param name the name of the CoffeeRatings
-   * @param newName the new name
-   */
-  @PostMapping(path = "/rating/{name}/rename", consumes = "application/json")
-  public boolean renameCoffeeRating(@PathVariable("name") String name,
-      @RequestParam("newName") String newName) {
-    CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
-    if (getCoffeeRatingModel().getCoffeeRating(newName) != null) {
-      throw new IllegalArgumentException("A CoffeeRating named \"" + newName + "\" already exists");
-    }
-    coffeeRating.setName(newName);
-    autoSaveCoffeeRatingModel();
-    return true;
-  }
-
-  /**
-   * Removes the CoffeeRatings.
-   *
-   * @param name the name of the CoffeeRatings
-   */
-  @DeleteMapping(path = "/rating/{name}", consumes = "application/json")
-  public boolean removeCoffeeRating(@PathVariable("name") String name) {
-    CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
-    getCoffeeRatingModel().removeRating(coffeeRating);
-    autoSaveCoffeeRatingModel();
-    return true;
-  }
 }
 
