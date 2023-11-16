@@ -29,12 +29,18 @@ We have usually written the tests after writing the code, but sometimes we have 
 
 ## Diagrams
 ### Packet diagram
-We have created a package diagram for the packages in the project; core and fxui. The diagram is located in **docs/diagrams/package_diagram.puml**.
+We have created a package diagram for the packages in the project; core and fxui. The diagram is located in docs/diagrams/package_diagram.puml. 
+![package diagram](docs/diagrams/package_diagram.png)
+
 
 ### Class diagram
-We have created a class diagram with the most important classes, namely the core classes CoffeeRatingItem, CoffeeRatings, and CoffeeRatingModel. The diagram is located in **docs/diagrams/class_diagram.puml**.
+We have created a class diagram with the most important classes, namely the core classes CoffeeRatingItem, CoffeeRatings, and CoffeeRatingModel. The diagram is located in docs/diagrams/class_diagram.puml.
+![class diagram](docs/diagrams/class_diagram.png)
+
 
 ### Sequence diagram
+A sequence diagram is made, displaying the core-classes; their attributes and methods, as well as associations between the classes and information about their cardinality. The diagram is located in docs/diagrams/sequence_diagram.puml.
+![sequence diagram](docs/diagrams/sequence_diagram.png)
 
 
 ## Design

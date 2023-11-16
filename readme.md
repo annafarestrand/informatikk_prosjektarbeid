@@ -23,4 +23,4 @@ More info about the project, including "how-to-run" is found in gr2343/readme.md
 Three diagrams (packet-, sequence- and class) is provided in the folder docs/diagrams.
 The following image is the packet diagram.
 
-![plantUML](docs/diagrams/package_diagram.png)
+![packageDiagram](docs/diagrams/package_diagram.png)
