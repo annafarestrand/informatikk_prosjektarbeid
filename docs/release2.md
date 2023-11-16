@@ -34,6 +34,4 @@ As for comments in the code, we have only addded a few comments. This is because
 
 ## Design
 
-The design of the app in this release is shown in the following picture.
-
-![App design of release 2](../docs/images/design-release2.png)
+The design is unchanged in this release.
