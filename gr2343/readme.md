@@ -14,7 +14,7 @@ This code project contains coffee rating, a personal ratingsystem for coffee. It
 3. Change directory by running 'cd gr2343'
 4. Install modules by running 'mvn clean install -DskipTests' (no need to run tests twice)
 5. Run tests by running 'mvn test'
-6. Run spotbugs and checkstyle by running 'mvn verify'
+6. Run spotbugs and checkstyle by running 'mvn verify -DskipTests'
 7. Run project by running 'mvn javafx:run -f ./fxui/pom.xml'
 8. Use the shippable product by running ‘mvn clean install -DskipTests’, then ‘mvn javafx:jlink -f ./fxui/pom.xml’ and then ‘mvn jpackage:jpackage -f ./fxui/pom.xml’.
 
