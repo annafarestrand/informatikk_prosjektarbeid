@@ -2,11 +2,11 @@
 
 ### Challenge:
 
-While developing our application with a Spring Boot REST server, our team struggled to create tests for the server, du to springboot taking more time than accounted for.
+While developing our application with a Spring Boot REST server, our team struggled to create tests for the server, due to springboot taking more time than accounted for.
 
 ### Strategy:
 
-To address this challenge, we tried to debugg to identify the root cause. As the deadline neared, we prioritized completing the final documentation.
+To address this challenge, we tried to debug to identify the root cause. As the deadline neared, we prioritized completing the final documentation.
 
 ### Reflection:
 
@@ -24,4 +24,4 @@ Our strategy is to hope that the shippable product works.
 
 ### Reflection:
 
-If we could redo this, we would have asked on of the TAs if they could verify the shippable product for us.
+If we could redo this, we would have asked one of the TAs if they could verify the shippable product for us.
