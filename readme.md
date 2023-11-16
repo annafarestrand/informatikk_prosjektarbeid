@@ -20,6 +20,7 @@ More info about the project, including "how-to-run" is found in gr2343/readme.md
   contains the core-module of the code project. - fxui:
   contains the UI-module of the code project.
 
-A packetdiagram is provided in docs/images/package_diagram.png and docs/images/package_diagram.puml
+Three diagrams (packet-, sequence- and class) is provided in the folder docs/diagrams.
+The following image is the packet diagram.
 
-![plantUML](docs/images/package_diagram.png)
+![packageDiagram](docs/diagrams/package_diagram.png)

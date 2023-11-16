@@ -11,7 +11,7 @@ EndUser -> newCoffeeRatingButtton : click
 newCoffeeRatingButtton -> CoffeeRatingController : handleNewCoffeeRatingItem
 CoffeeRatingController -> ratings : addCoffeeRatingItem
 CoffeeRatingController -> ratingsView : add
-CoffeeRatingController -> coffeeRatingsPersistence : writeCoffeeRatings
-CoffeeRatingController <- coffeeRatingsPersistence : updateRatingsView
+CoffeeRatingController -> remoteCoffeeRatingModelAccess : putCoffeeRatings
+CoffeeRatingController -> CoffeeRatingController : updateRatingsView
 
 @enduml
