@@ -37,7 +37,7 @@ public class CoffeeRatingModuleTest {
         CoffeeRatingModel model = new CoffeeRatingModel();
         CoffeeRatings ratings = new CoffeeRatings();
         ratings.setName("rating");
-        model.addRating(ratings);
+        model.addCoffeeRating(ratings);
         CoffeeRatingItem item = new CoffeeRatingItem();
         item.setDescription("Kaffe på Sit Kafe");
         item.setRating(5);

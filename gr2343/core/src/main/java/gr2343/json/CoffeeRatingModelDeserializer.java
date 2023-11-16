@@ -39,7 +39,7 @@ class CoffeeRatingModelDeserializer extends JsonDeserializer<CoffeeRatingModel> 
                 for (JsonNode elementNode : ((ArrayNode) ratingsNode)) {
                     CoffeeRatings ratings = coffeeRatingsDeserializer.deserialize(elementNode);
                     if (ratings != null) {
-                        model.addRating(ratings);
+                        model.addCoffeeRating(ratings);
                     }
                 }
             }

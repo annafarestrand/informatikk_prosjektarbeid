@@ -63,7 +63,7 @@ public class CoffeeRatingModelService {
     coffeeRatingItem1.setDescription("Coffee 1");
     coffeeRatingItem1.setRating(5);
     coffeeRating1.addCoffeeRatingItem(coffeeRatingItem1);
-    coffeeRatingModel.addRating(coffeeRating1);
+    coffeeRatingModel.addCoffeeRating(coffeeRating1);
     return coffeeRatingModel;
   }
 

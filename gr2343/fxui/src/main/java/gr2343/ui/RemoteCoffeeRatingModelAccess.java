@@ -189,7 +189,7 @@ public class RemoteCoffeeRatingModelAccess {
       String responseString = response.body();
       Boolean removed = objectMapper.readValue(responseString, Boolean.class);
       if (removed != null) {
-        coffeeRatingModel.removeRating(coffeeRatingModel.getCoffeeRating(name));
+        coffeeRatingModel.removeCoffeeRating(coffeeRatingModel.getCoffeeRating(name));
       }
     } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e);

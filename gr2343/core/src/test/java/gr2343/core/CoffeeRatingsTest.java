@@ -107,10 +107,10 @@ public class CoffeeRatingsTest {
         CoffeeRatingModel model = new CoffeeRatingModel();
         CoffeeRatings rating = new CoffeeRatings();
         rating.setName("Espresso House");
-        model.addRating(rating);
+        model.addCoffeeRating(rating);
 
         // henter ut objekt fra model
-        CoffeeRatings retrievedRating = model.getRating("Espresso House");
+        CoffeeRatings retrievedRating = model.getCoffeeRating("Espresso House");
         // sjekker om ratingen som ble lagt inn er lik den som ble hentet ut
         assertEquals(rating, retrievedRating);
     }
@@ -121,12 +121,12 @@ public class CoffeeRatingsTest {
         CoffeeRatingModel model = new CoffeeRatingModel();
         CoffeeRatings rating = new CoffeeRatings();
         rating.setName("Dromedar");
-        model.addRating(rating);
+        model.addCoffeeRating(rating);
 
         // fjerner objektet
-        model.removeRatings(rating);
+        model.removeCoffeeRating(rating);
         // sjekker at det ikke finnes et objekt med det navnet i model lenger
-        CoffeeRatings retrievedRating = model.getRating("Dromedar");
+        CoffeeRatings retrievedRating = model.getCoffeeRating("Dromedar");
         assertNull(retrievedRating);
     }
 }

@@ -138,7 +138,7 @@ public class CoffeeRatingController {
                 // hvis det ikke finnes en "ratings" lager vi en ny
                 ratings = new CoffeeRatings();
                 ratings.setName("ratings");
-                model.addRating(ratings);
+                model.addCoffeeRating(ratings);
             }
 
             // Legg til ny rating

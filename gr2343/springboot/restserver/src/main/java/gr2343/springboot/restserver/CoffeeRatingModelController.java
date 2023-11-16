@@ -88,7 +88,7 @@ public class CoffeeRatingModelController {
   @DeleteMapping(path = "/rating/{name}", consumes = "application/json")
   public boolean removeCoffeeRating(@PathVariable("name") String name) {
     CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
-    getCoffeeRatingModel().removeRating(coffeeRating);
+    getCoffeeRatingModel().removeCoffeeRating(coffeeRating);
     autoSaveCoffeeRatingModel();
     return true;
   }
