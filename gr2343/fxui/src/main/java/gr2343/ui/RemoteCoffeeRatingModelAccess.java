@@ -42,7 +42,9 @@ public class RemoteCoffeeRatingModelAccess {
     objectMapper = CoffeeRatingsPersistence.createObjectMapper();
   }
 
-  private CoffeeRatingModel getCoffeeRatingModel() {
+  // Skal hente CoffeeRatingModel fra serveren, og oppdatere viewet?
+  // Lurer på om det er denne som gir Raw JSON Content på starten
+  public CoffeeRatingModel getCoffeeRatingModel() {
     if (coffeeRatingModel == null) {
       HttpRequest request =
           HttpRequest.newBuilder(endpointBaseUri).header(ACCEPT_HEADER, APPLICATION_JSON).GET().build();
@@ -94,7 +96,7 @@ public class RemoteCoffeeRatingModelAccess {
   }
 
   private URI coffeeRatingUri(String name) {
-    return endpointBaseUri.resolve("list/").resolve(uriParam(name));
+    return endpointBaseUri.resolve("coffeerating/rating/").resolve(uriParam(name));
   }
 
   /**
@@ -114,6 +116,7 @@ public class RemoteCoffeeRatingModelAccess {
         final HttpResponse<String> response =
             HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
         String responseString = response.body();
+        System.out.println("Request"+request);
         System.out.println("getCoffeeRating(" + name + ") response: " + responseString);
         CoffeeRatings coffeeRating = objectMapper.readValue(responseString, CoffeeRatings.class);
         if (!(coffeeRating instanceof CoffeeRatings)) {
@@ -129,15 +132,17 @@ public class RemoteCoffeeRatingModelAccess {
     return oldCoffeeRating;
   }
 
-  private void putCoffeeRating(CoffeeRatings coffeeRating) {
+  public void putCoffeeRating(CoffeeRatings coffeeRating) {
     try {
       String json = objectMapper.writeValueAsString(coffeeRating);
       HttpRequest request =
           HttpRequest.newBuilder(coffeeRatingUri(coffeeRating.getName())).header(ACCEPT_HEADER, APPLICATION_JSON)
               .header(CONTENT_TYPE_HEADER, APPLICATION_JSON).PUT(BodyPublishers.ofString(json)).build();
+      System.out.println("Request"+request);
       final HttpResponse<String> response =
           HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
       String responseString = response.body();
+      System.out.println("putCoffeeRating(" + coffeeRating.getName() + ") response: " + responseString);
       Boolean added = objectMapper.readValue(responseString, Boolean.class);
       if (added != null) {
         coffeeRatingModel.putCoffeeRating(coffeeRating);
@@ -153,7 +158,21 @@ public class RemoteCoffeeRatingModelAccess {
    * @param coffeeRating the coffeeRating
    */
   public void addCoffeeRating(CoffeeRatings coffeeRating) {
-    putCoffeeRating(coffeeRating);
+    try {
+      String json = objectMapper.writeValueAsString(coffeeRating);
+      HttpRequest request = HttpRequest.newBuilder(coffeeRatingUri(coffeeRating.getName()))
+          .header(ACCEPT_HEADER, APPLICATION_JSON).header(CONTENT_TYPE_HEADER, APPLICATION_JSON)
+          .POST(BodyPublishers.ofString(json)).build();
+      final HttpResponse<String> response =
+          HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+      String responseString = response.body();
+      Boolean added = objectMapper.readValue(responseString, Boolean.class);
+      if (added != null) {
+        coffeeRatingModel.putCoffeeRating(coffeeRating);
+      }
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   /**
@@ -171,29 +190,6 @@ public class RemoteCoffeeRatingModelAccess {
       Boolean removed = objectMapper.readValue(responseString, Boolean.class);
       if (removed != null) {
         coffeeRatingModel.removeRating(coffeeRatingModel.getCoffeeRating(name));
-      }
-    } catch (IOException | InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  /**
-   * Renames a coffee rating to a new name.
-   *
-   * @param oldName the name of the coffee rating to change
-   * @param newName the new name
-   */
-  public void renameCoffeeRating(String oldName, String newName) {
-    try {
-      HttpRequest request = HttpRequest.newBuilder(coffeeRatingUri(oldName).resolve(uriParam(oldName) + "/rename"))
-          .header(ACCEPT_HEADER, APPLICATION_JSON).header(CONTENT_TYPE_HEADER, APPLICATION_FORM_URLENCODED)
-          .POST(BodyPublishers.ofString("newName=" + uriParam(newName))).build();
-      final HttpResponse<String> response =
-          HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
-      String responseString = response.body();
-      Boolean renamed = objectMapper.readValue(responseString, Boolean.class);
-      if (renamed != null) {
-        coffeeRatingModel.getCoffeeRating(oldName).setName(newName);
       }
     } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e);
