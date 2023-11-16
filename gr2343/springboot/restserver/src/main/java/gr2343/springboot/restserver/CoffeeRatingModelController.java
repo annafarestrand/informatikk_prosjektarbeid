@@ -41,7 +41,7 @@ public class CoffeeRatingModelController {
    * @param name the name of the coffee rating
    * @return the corresponding coffee rating
    */
-  @GetMapping(path = "/rating/{name}")
+  @GetMapping(path = "/rating/{name}", produces = "application/json")
   public CoffeeRatings getCoffeeRating(@PathVariable("name") String name) {
     CoffeeRatings rating = getCoffeeRatingModel().getCoffeeRating(name);
     return rating;
@@ -54,7 +54,7 @@ public class CoffeeRatingModelController {
    * @param rating the coffee rating to add
    * @return true if it was added, false if it replaced
    */
-  @PutMapping(path = "/rating/{name}")
+  @PutMapping(path = "/rating/{name}", consumes = "application/json")
   public boolean putCoffeeRating(@PathVariable("name") String name,
       @RequestBody CoffeeRatings rating) {
     boolean added = getCoffeeRatingModel().putCoffeeRating(rating) == null;
@@ -68,7 +68,7 @@ public class CoffeeRatingModelController {
    * @param name the name of the CoffeeRatings
    * @param newName the new name
    */
-  @PostMapping(path = "/rating/{name}/rename")
+  @PostMapping(path = "/rating/{name}/rename", consumes = "application/json")
   public boolean renameCoffeeRating(@PathVariable("name") String name,
       @RequestParam("newName") String newName) {
     CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
@@ -85,7 +85,7 @@ public class CoffeeRatingModelController {
    *
    * @param name the name of the CoffeeRatings
    */
-  @DeleteMapping(path = "/rating/{name}")
+  @DeleteMapping(path = "/rating/{name}", consumes = "application/json")
   public boolean removeCoffeeRating(@PathVariable("name") String name) {
     CoffeeRatings coffeeRating = getCoffeeRatingModel().getCoffeeRating(name);
     getCoffeeRatingModel().removeRating(coffeeRating);
