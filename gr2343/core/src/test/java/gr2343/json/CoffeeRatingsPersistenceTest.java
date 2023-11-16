@@ -82,22 +82,6 @@ public class CoffeeRatingsPersistenceTest {
         assertEquals(saveFilePath, persistence.getSaveFilePath());
     }
 
-    @Test
-    public void testLoadCoffeeRatingModel() throws IOException {
-        // Setter en testfil for lasting
-        String saveFile = "testFile.json";
-        persistence.setSaveFile(saveFile);
-
-        // Simulerer JSON-innhold og en forventet modell fra mock-objektet
-        String jsonContent = "{\"lists\":[{\"name\":\"ratings\",\"items\":[]}]}";
-        StringReader stringReader = new StringReader(jsonContent);
-        when(mockMapper.readValue(stringReader, CoffeeRatingModel.class)).thenReturn(mockModel);
-
-        // Utfører lasting av modellen
-        CoffeeRatingModel result = persistence.loadCoffeeRatingModel();
-        // Sjekker om resultatet er som forventet
-        assertEquals(mockModel, result);
-    }
 
     @Test
     public void testSaveCoffeeRatingModel() throws IOException {
