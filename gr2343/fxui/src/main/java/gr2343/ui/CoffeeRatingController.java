@@ -59,8 +59,8 @@ public class CoffeeRatingController {
     @FXML
     public void initialize() {
         // kobler data til view
-        updateRatingsView();
         ratingsView.setCellFactory(ratingsView -> new CoffeeRatingListCell());
+        updateRatingsView();
     }
 
     protected CoffeeRatingModel getModel() {
@@ -78,6 +78,7 @@ public class CoffeeRatingController {
     
             // Clear the existing items in the ListView
             ratingsView.getItems().clear();
+            System.out.println("ratings.getItems() = " + ratings.getItems());
     
             if (ratings != null && ratings.getItems() != null) {
                 // Add the items from CoffeeRatings to the ListView
