@@ -1,6 +1,7 @@
 package gr2343.ui;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,10 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import gr2343.core.CoffeeRatingModel;
+import gr2343.ui.RemoteCoffeeRatingModelAccess;
 
 public class CoffeeRatingController {
 
-    private final static String ratingsWithItems = "{\"lists\":[{\"name\":\"ratings\",\"items\":[]}]}";
+    //private final static String ratingsWithItems = "{\"lists\":[{\"name\":\"ratings\",\"items\":[]}]}";
 
     // private CoffeeRatings ratings;
     private CoffeeRatingModel model;
@@ -25,12 +27,15 @@ public class CoffeeRatingController {
 
     private CoffeeRatingItem selectedItemForUpdate = null;
 
+    private RemoteCoffeeRatingModelAccess remoteModelAccess;
+
     public CoffeeRatingController() throws IOException {
-        try {
-            model = coffeeRatingsPersistence.readCoffeeRatings(ratingsWithItems);
-        } catch (JsonProcessingException e) {
-        }
+        //model = coffeeRatingsPersistence.readCoffeeRatings(ratingsWithItems);
+        remoteModelAccess = new RemoteCoffeeRatingModelAccess(URI.create("http://localhost:8080/"));
+        remoteModelAccess.getCoffeeRatingModel();
+        model = remoteModelAccess.getCoffeeRatingModel();
     }
+
 
     @FXML
     TextField newDescriptionText;
@@ -67,14 +72,23 @@ public class CoffeeRatingController {
     }
 
     protected void updateRatingsView() {
-        // oppdaterer view
-        List<CoffeeRatingItem> viewRatings = ratingsView.getItems();
-        viewRatings.clear();
-        CoffeeRatings ratings = model.getCoffeeRating("ratings");
-        if (ratings != null) {
-            viewRatings.addAll(ratings.getItems());
+        try {
+            // Fetch the CoffeeRatings from the server
+            CoffeeRatings ratings = remoteModelAccess.getCoffeeRating("ratings");
+    
+            // Clear the existing items in the ListView
+            ratingsView.getItems().clear();
+    
+            if (ratings != null && ratings.getItems() != null) {
+                // Add the items from CoffeeRatings to the ListView
+                ratingsView.getItems().addAll(ratings.getItems());
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception for debugging
         }
     }
+    
+    
 
     @FXML
     public void handlenewCoffeeRatingAction() throws JsonGenerationException, JsonMappingException, IOException {
@@ -83,7 +97,6 @@ public class CoffeeRatingController {
             // Oppdater den eksisterende ratingen med de nye verdiene
             selectedItemForUpdate.setDescription(newDescriptionText.getText());
             selectedItemForUpdate.setRating(Integer.parseInt(newRatingText.getText()));
-
             // Tøm midlertidige tekstfelt
             newDescriptionText.clear();
             newRatingText.clear();
@@ -93,6 +106,7 @@ public class CoffeeRatingController {
 
             // Oppdater visningen
             updateRatingsView();
+           
         } else {
             // Få CoffeeRatings object for "ratings"
             CoffeeRatings ratings = model.getCoffeeRating("ratings");
@@ -111,12 +125,14 @@ public class CoffeeRatingController {
 
             // Add the new item to the ratings
             ratings.addCoffeeRatingItem(item);
-
             ratingsView.getItems().add(item);
 
             // Tøm midlertidige tekstfelt
             newDescriptionText.clear();
             newRatingText.clear();
+            
+            remoteModelAccess.putCoffeeRating(ratings);
+            updateRatingsView();
         }
 
         // Lagre oppdateringer til fil
@@ -132,6 +148,7 @@ public class CoffeeRatingController {
             getCoffeeRatings().removeCoffeeRatingItem(item);
             ratingsView.getItems().remove(item);
         }
+        updateRatingsView();
     }
 
     @FXML
@@ -144,6 +161,7 @@ public class CoffeeRatingController {
             newDescriptionText.setText(selectedItemForUpdate.getDescription());
             newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
         }
+        updateRatingsView();
     }
 
 
