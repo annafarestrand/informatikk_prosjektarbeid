@@ -119,17 +119,17 @@ public class RemoteCoffeeRatingModelAccess {
         System.out.println("Request"+request);
         System.out.println("getCoffeeRating(" + name + ") response: " + responseString);
         CoffeeRatings coffeeRating = objectMapper.readValue(responseString, CoffeeRatings.class);
-        if (!(coffeeRating instanceof CoffeeRatings)) {
-          CoffeeRatings newCoffeeRating = new CoffeeRatings();
-          newCoffeeRating.setName(coffeeRating.getName());
-          coffeeRating = newCoffeeRating;
-        }
+        // if (!(coffeeRating instanceof CoffeeRatings)) {
+        //   CoffeeRatings newCoffeeRating = new CoffeeRatings();
+        //   newCoffeeRating.setName(coffeeRating.getName());
+        //   coffeeRating = newCoffeeRating;
+        // }
         this.coffeeRatingModel.putCoffeeRating(coffeeRating);
       } catch (IOException | InterruptedException e) {
         throw new RuntimeException(e);
       }
     }
-    return oldCoffeeRating;
+    return coffeeRatingModel.getCoffeeRating(name);
   }
 
   public void putCoffeeRating(CoffeeRatings coffeeRating) {
