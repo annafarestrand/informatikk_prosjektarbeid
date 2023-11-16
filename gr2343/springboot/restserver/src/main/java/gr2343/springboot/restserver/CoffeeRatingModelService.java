@@ -60,8 +60,8 @@ public class CoffeeRatingModelService {
     CoffeeRatings coffeeRating1 = new CoffeeRatings();
     coffeeRating1.setName("ratings");
     CoffeeRatingItem coffeeRatingItem1 = new CoffeeRatingItem();
-    coffeeRatingItem1.setDescription("Coffee 1");
-    coffeeRatingItem1.setRating(5);
+    coffeeRatingItem1.setDescription("Kaffe fra Sit");
+    coffeeRatingItem1.setRating(3);
     coffeeRating1.addCoffeeRatingItem(coffeeRatingItem1);
     coffeeRatingModel.addCoffeeRating(coffeeRating1);
     return coffeeRatingModel;
