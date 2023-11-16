@@ -128,6 +128,9 @@ public class CoffeeRatingController {
             selectedItemForUpdate = null;
 
             // Oppdater visningen
+            // Få CoffeeRatings object for "ratings"
+            CoffeeRatings ratings = model.getCoffeeRating("ratings");
+            remoteModelAccess.putCoffeeRating(ratings);
             updateRatingsView();
            
         } else {
@@ -178,6 +181,7 @@ public class CoffeeRatingController {
             getCoffeeRatings().removeCoffeeRatingItem(item);
             ratingsView.getItems().remove(item);
         }
+        remoteModelAccess.putCoffeeRating(getCoffeeRatings());
         updateRatingsView();
     }
 
@@ -191,6 +195,7 @@ public class CoffeeRatingController {
             newDescriptionText.setText(selectedItemForUpdate.getDescription());
             newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
         }
+        remoteModelAccess.putCoffeeRating(getCoffeeRatings());
         updateRatingsView();
     }
 }
