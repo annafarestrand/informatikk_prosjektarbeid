@@ -62,9 +62,11 @@ When you launch the application, a new window should pop up. To add a new object
 
 ## Tests
 
-We have written tests for a significant portion of the code, including the functions in the UI controller, most of the core logic, and the serializers and deserializers in the JSON module. The test coverage for the core is **92% (CHANGE)**, and for the FXUI, it is **61% (CHANGE)** test coverage. You can find the test coverage in the JaCoCo reports generated after running 'mvn test.' These reports are located at gr2343/core/target/site/index.html and gr2343/fxui/target/site/index.html, respectively. Unfortunately, we have not found out how to open these in eclipse che, so we have included screenshots of how it looks when it runs locally on our computer. The reports are found in docs/images/JaCoCo-core.png and docs/images/JaCoCo-fxui.png.
+We have written tests for a significant portion of the code, including the functions in the UI controller, most of the core logic, and the serializers and deserializers in the JSON module. The test coverage for the core is **84% (CHANGE)**, and for the FXUI, it is **64% (CHANGE)** test coverage. You can find the test coverage in the JaCoCo reports generated after running 'mvn test.' These reports are located at gr2343/core/target/site/index.html and gr2343/fxui/target/site/index.html, respectively. Unfortunately, we have not found out how to open these in eclipse che, so we have included screenshots of how it looks when it runs locally on our computer. The reports are found in docs/images/JaCoCo-core.png and docs/images/JaCoCo-fxui.png.
 
 One of the reasons we don't have 100% test coverage in FXUI is that we don't have direct tests for CoffeeRatingApp. This is because we have implicitly tested that the app runs by testing its functionality. If the app didn't run, its functionality wouldn't work correctly either.
+
+We don't have test coverage in springboot because of technical issues we were not able to solve. The attempted test is commented out to ensure that the app fucntion. Will further explain in challenges.md.
 
 Another reason is that we have 68% test coverage on the controller (CoffeeRatingController). This is because we haven't been able to test whether the pointer clicks on an item in our list, and then updates or deletes the associated item. However, we know that this works when the app is running, as we have tested it manually. Therefore, we believe it wasn't worthwhile to spend a lot of time on this and instead focus on other parts of the code.
 

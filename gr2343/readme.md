@@ -11,14 +11,15 @@ This code project contains CoffeeRating, a personal ratingsystem for coffee. It 
 2. In Eclipse Che go to Endpoints->Public and copy the link for 6080-tcp-desktop-ui and open the link in a new tab.
 3. Change directory by running 'cd gr2343'
 4. Install modules by running 'mvn clean install -DskipTests'
-5. Run tests by running 'mvn test'
-6. Run spotbugs and checkstyle by running 'mvn verify -DskipTests'
-7. Run project by running 'mvn javafx:run -f ./fxui/pom.xml'
-8. Use the shippable product by running ‘mvn javafx:jlink -f ./fxui/pom.xml’ and then ‘mvn jpackage:jpackage -f ./fxui/pom.xml’. 
+5. Run the server in another terminal by 'cd springboot/restserver/' and then run 'mvn spring-bot:run'. The server must run for the app and test to function.
+6. Run tests by running 'mvn test'
+7. Run spotbugs and checkstyle by running 'mvn verify -DskipTests'
+8. Run project by running 'mvn javafx:run -f ./fxui/pom.xml'
+9. Use the shippable product by running ‘mvn javafx:jlink -f ./fxui/pom.xml’ and then ‘mvn jpackage:jpackage -f ./fxui/pom.xml’.
 
 ## Structure and Maven build
 
-The project is made with JavaFX, and data is stored and read from JSON-objects.
+The project is made with JavaFX, and data is stored and read from JSON-objects that is read from springboot server.
 
 The maven build requires Maven version 3.8.1, Java version 17, JavaFX version 20 and Jackson version 2.13.4.
 
@@ -28,5 +29,6 @@ The maven build requires Maven version 3.8.1, Java version 17, JavaFX version 20
 - As a user, I want to edit my ratings; to delete or update them.
 
 ## Design
+
 This is how we planned for the design to be at the start at the project:
 ![Planned](../docs/images/plan.png)
