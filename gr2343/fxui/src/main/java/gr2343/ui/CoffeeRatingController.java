@@ -1,19 +1,18 @@
 package gr2343.ui;
 
+import gr2343.core.CoffeeRatingItem;
+import gr2343.core.CoffeeRatingModel;
+import gr2343.core.CoffeeRatings;
+import gr2343.json.CoffeeRatingsPersistence;
 import java.io.IOException;
 import java.net.URI;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-
-import gr2343.core.CoffeeRatingItem;
-import gr2343.core.CoffeeRatings;
-import gr2343.json.CoffeeRatingsPersistence;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import gr2343.core.CoffeeRatingModel;
 
 public class CoffeeRatingController {
 

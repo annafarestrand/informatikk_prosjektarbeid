@@ -1,5 +1,9 @@
 package gr2343.ui;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import gr2343.core.CoffeeRatingModel;
+import gr2343.core.CoffeeRatings;
+import gr2343.json.CoffeeRatingsPersistence;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -8,10 +12,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import gr2343.core.CoffeeRatingModel;
-import gr2343.core.CoffeeRatings;
-import gr2343.json.CoffeeRatingsPersistence;
 
 
 /**
