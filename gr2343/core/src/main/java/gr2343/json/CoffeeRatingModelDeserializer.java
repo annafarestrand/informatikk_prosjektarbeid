@@ -12,6 +12,8 @@ import java.io.IOException;
 import gr2343.core.CoffeeRatingModel;
 import gr2343.core.CoffeeRatings;
 
+// denne klassen brukes til å hente ut en JSON-streng og oversette det til et javaobjekt (CoffeeRatingModel)
+
 class CoffeeRatingModelDeserializer extends JsonDeserializer<CoffeeRatingModel> {
 
     private CoffeeRatingsDeserializer coffeeRatingsDeserializer = new CoffeeRatingsDeserializer();

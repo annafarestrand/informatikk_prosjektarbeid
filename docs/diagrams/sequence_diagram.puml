@@ -1,0 +1,17 @@
+@startuml sequence_diagram
+
+skinparam Style strictuml 
+skinparam SequenceMessageAlignment center
+
+actor EndUser as "User"
+
+EndUser -> newDescriptionText : click and write
+EndUser -> newRatingText : click and write
+EndUser -> newCoffeeRatingButtton : click
+newCoffeeRatingButtton -> CoffeeRatingController : handleNewCoffeeRatingItem
+CoffeeRatingController -> ratings : addCoffeeRatingItem
+CoffeeRatingController -> ratingsView : add
+CoffeeRatingController -> coffeeRatingsPersistence : writeCoffeeRatings
+CoffeeRatingController <- coffeeRatingsPersistence : updateRatingsView
+
+@enduml

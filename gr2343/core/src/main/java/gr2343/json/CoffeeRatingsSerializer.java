@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
 
+// denne klassen oversetter en CoffeeRatings fra java-objekt til en JSON-streng
+
 class CoffeeRatingsSerializer extends JsonSerializer<CoffeeRatings> {
     /*
      * Format: { "name": "...", "items": [...] // Array of CoffeeRatingItem }

@@ -17,17 +17,21 @@ import gr2343.core.CoffeeRatingModel;
 
 public class CoffeeRatingModuleTest {
 
+    // setter opp en mapper
     private static ObjectMapper mapper;
 
+    // setter inn en simulering av en json-streng
     private String json =
             "{\"ratings\":[{\"name\":\"rating\",\"items\":[{\"description\":\"Kaffe på Sit Kafe\",\"rating\":5}]}]}";
 
+    // setter opp en mapper og module før hver test
     @BeforeAll
     public static void setUp() {
         mapper = new ObjectMapper();
         mapper.registerModule(new CoffeeRatingModule());
     }
 
+    // tester at man kan oversette fra javaobjekt til JSON-streng
     @Test
     public void testSerializers() {
         CoffeeRatingModel model = new CoffeeRatingModel();
@@ -45,6 +49,7 @@ public class CoffeeRatingModuleTest {
         }
     }
 
+    // tester at man kan oversette fra JSON-streng til javaobjekt
     @Test
     public void testDeserializers() {
         try {

@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 import gr2343.core.CoffeeRatingItem;
 
+// denne klassen brukes til å hente ut en JSON-streng og oversette det til et javaobjekt (et CoffeeRatingItem)
+
 class CoffeeRatingItemDeserializer extends JsonDeserializer<CoffeeRatingItem> {
 
   @Override

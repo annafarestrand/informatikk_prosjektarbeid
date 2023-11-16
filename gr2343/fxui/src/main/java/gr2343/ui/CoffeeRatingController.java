@@ -11,6 +11,7 @@ import gr2343.core.CoffeeRatingItem;
 import gr2343.core.CoffeeRatings;
 import gr2343.json.CoffeeRatingsPersistence;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -21,7 +22,6 @@ public class CoffeeRatingController {
 
     //private final static String ratingsWithItems = "{\"lists\":[{\"name\":\"ratings\",\"items\":[]}]}";
 
-    // private CoffeeRatings ratings;
     private CoffeeRatingModel model;
     private CoffeeRatingsPersistence coffeeRatingsPersistence = new CoffeeRatingsPersistence();
 
@@ -63,7 +63,7 @@ public class CoffeeRatingController {
         updateRatingsView();
     }
 
-    protected CoffeeRatingModel getModel() {
+    protected CoffeeRatingModel getModel() { // henter ut model
         return model;
     }
 
@@ -93,6 +93,28 @@ public class CoffeeRatingController {
 
     @FXML
     public void handlenewCoffeeRatingAction() throws JsonGenerationException, JsonMappingException, IOException {
+            // Validering
+        String description = newDescriptionText.getText();
+        String ratingStr = newRatingText.getText();
+        int rating;
+
+        // Sjekk om description er gyldig (inneholder minst én bokstav)
+        if (description == null || !description.matches(".*[a-zA-Z]+.*")) {
+            showWarning("Ugyldig beskrivelse", "Det må være minst én bokstav i beskrivelsen");
+            return; // Avbryter handlingen
+        }
+
+        // Forsøk å parse rating, og sjekk om det er et tall mellom 1 og 5
+        try {
+            rating = Integer.parseInt(ratingStr);
+            if (rating < 1 || rating > 5) {
+                showWarning("Ugyldig rating", "Rating må være i intervallet 1-5.");
+                return; // Avbryter handlingen
+            }
+        } catch (NumberFormatException e) {
+            showWarning("Invalid Rating", "Rating må være et tall.");
+            return; // Avbryter handlingen
+        }
         // Legg til ny rating
         if (selectedItemForUpdate != null) {
             // Oppdater den eksisterende ratingen med de nye verdiene
@@ -113,7 +135,7 @@ public class CoffeeRatingController {
             CoffeeRatings ratings = model.getCoffeeRating("ratings");
 
             if (ratings == null) {
-                // If "ratings" doesn't exist in the model, create it
+                // hvis det ikke finnes en "ratings" lager vi en ny
                 ratings = new CoffeeRatings();
                 ratings.setName("ratings");
                 model.addRating(ratings);
@@ -124,7 +146,7 @@ public class CoffeeRatingController {
             item.setDescription(newDescriptionText.getText());
             item.setRating(Integer.parseInt(newRatingText.getText()));
 
-            // Add the new item to the ratings
+            /// Legg til nytt item i ratings
             ratings.addCoffeeRatingItem(item);
             ratingsView.getItems().add(item);
 
@@ -140,6 +162,13 @@ public class CoffeeRatingController {
         coffeeRatingsPersistence.writeCoffeeRatings(model, null);
     }
 
+    private void showWarning(String title, String content) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle(title);
+    alert.setHeaderText(null);
+    alert.setContentText(content);
+    alert.showAndWait();
+}
 
     @FXML
     public void handleDeleteRatingAction() {
@@ -154,16 +183,14 @@ public class CoffeeRatingController {
 
     @FXML
     public void handleUpdateRatingAction() {
-        // Få det valgte elementet som skal oppdateres
+        // Henter det valgte itemet som skal oppdateres
         selectedItemForUpdate = ratingsView.getSelectionModel().getSelectedItem();
 
         if (selectedItemForUpdate != null) {
-            // Fyll inn midlertidige tekstfelt med eksisterende data for redigering
+            // Fyller inn midlertidige tekstfelt med eksisterende data
             newDescriptionText.setText(selectedItemForUpdate.getDescription());
             newRatingText.setText(String.valueOf(selectedItemForUpdate.getRating()));
         }
         updateRatingsView();
     }
-
-
 }

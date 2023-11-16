@@ -2,12 +2,13 @@ package gr2343.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
+import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.Iterator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class CoffeeRatingsTest {
+    // her har vi initialisert newItem og newRating i hver test; det hadde også vært mulig å sette disse i en egen metode setUpItems og brukt BeforeAll
 
     @Test
     public void testSetAndGetDescription_returnsDescription() { // tester foerst at get og set for description virker
@@ -51,7 +52,7 @@ public class CoffeeRatingsTest {
     }
 
     @Test
-    public void testRemoveCoffeeRatingItem_returnsEmptyList() { // tester at et element kan fjernes fra CoffeeeRating
+    public void testRemoveCoffeeRatingItem_returnsEmptyList() { // tester at et element kan fjernes fra CoffeeRatings
         CoffeeRatings newRating = new CoffeeRatings();
         CoffeeRatingItem newItem = new CoffeeRatingItem();
 
@@ -98,5 +99,34 @@ public class CoffeeRatingsTest {
         newItem.setRating(rating);
 
         assertEquals("Starbucks, 4/5", newItem.toString());
+    }
+
+    @Test
+    public void testGetRating_returnsCorrectRating() {
+        // legger inn et nytt objekt
+        CoffeeRatingModel model = new CoffeeRatingModel();
+        CoffeeRatings rating = new CoffeeRatings();
+        rating.setName("Espresso House");
+        model.addRating(rating);
+
+        // henter ut objekt fra model
+        CoffeeRatings retrievedRating = model.getRating("Espresso House");
+        // sjekker om ratingen som ble lagt inn er lik den som ble hentet ut
+        assertEquals(rating, retrievedRating);
+    }
+
+    @Test
+    public void testRemoveRatings_removesRating() {
+        // legger inn et nytt objekt
+        CoffeeRatingModel model = new CoffeeRatingModel();
+        CoffeeRatings rating = new CoffeeRatings();
+        rating.setName("Dromedar");
+        model.addRating(rating);
+
+        // fjerner objektet
+        model.removeRatings(rating);
+        // sjekker at det ikke finnes et objekt med det navnet i model lenger
+        CoffeeRatings retrievedRating = model.getRating("Dromedar");
+        assertNull(retrievedRating);
     }
 }

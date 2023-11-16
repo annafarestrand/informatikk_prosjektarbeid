@@ -21,6 +21,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
   private CoffeeRatings ratings;
   private CoffeeRatingItem item1, item2;
 
+  // starter et testvindu som skal brukes videre
   @Override
   public void start(final Stage stage) throws Exception {
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("CoffeeRatingTest.fxml"));
@@ -33,6 +34,7 @@ public class CoffeeRatingAppTest extends ApplicationTest {
 
   @BeforeEach
   public void setupItems() {
+    ratings = new CoffeeRatings();
     item1 = new CoffeeRatingItem();
     item1.setDescription("Kaffe på Sit Kafe");
     item1.setRating(5);
@@ -44,8 +46,17 @@ public class CoffeeRatingAppTest extends ApplicationTest {
 
   @Test
   public void testController_intital() {
-    // TODO: sjekk at ratings er initialisert og matcher item1 og item2, funker ikke med model
-    assertNotNull(this.controller);
+    assertNotNull(this.controller, "Controller is not initialized");
+    assertNotNull(this.ratings, "Ratings in controller is not initialized");
+    checkCoffeeRatingListItems(item1, item2);
+  }
+
+  @Test
+  public void testGetModel() {
+      // henter ut modellen
+      CoffeeRatingModel model = controller.getModel();
+      // sjekker at modellen blir hentet
+      assertNotNull(model, "Cannot get model.");
   }
 
   @Test
@@ -55,9 +66,10 @@ public class CoffeeRatingAppTest extends ApplicationTest {
 
   }
 
+  // tester at nye objekt blir lagt inn riktig
   @Test
   public void testNewCoffeRating() {
-    String newDescription = "Kaffe fra kantina";
+    String newDescription = "Kantina";
     String newRating = "4";
     clickOn("#newDescriptionText").write(newDescription);
     clickOn("#newRatingText").write(newRating);
@@ -102,9 +114,27 @@ public class CoffeeRatingAppTest extends ApplicationTest {
   }
 
   @Test
+  private void testAlert_DescriptionNotValid() {
+    // Legger inn en ugyldig beskrivelse
+    String newDescription = "48902";
+    String newRating = "4";
+
+    // skriver inn description og rating i tekstfeltene
+    clickOn("#newDescriptionText").write(newDescription);
+    clickOn("#newRatingText").write(newRating);
+
+    // prøver å lagre
+    clickOn("#newCoffeeRatingButton");
+
+    // sjekke at det kommer opp en alert med riktig navn 
+
+
+  }
+
+  @Test
   public void testDeleteCoffeRating() {
     // legger inn en rating som kan slettes
-    String newDescription = "Fra den gode kafeen";
+    String newDescription = "Nabo-kaféen";
     String newRating = "5";
 
     // skriver inn description og rating
@@ -118,9 +148,6 @@ public class CoffeeRatingAppTest extends ApplicationTest {
     newItem.setRating(Integer.parseInt(newRating));
 
     // klikke paa det item'et som skal slettes
-
-    // fra todolist: clickOn(findTodoItemListCellNode(cell -> !cell.getItem().isChecked(), ".check-box",
-    // 0));
 
     // sletter itemet
     clickOn("#deleteRatingButton");
