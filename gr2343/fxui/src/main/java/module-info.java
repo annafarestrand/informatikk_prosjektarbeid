@@ -4,6 +4,7 @@ module com.gr2343.ui {
     requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.net.http;
 
     requires com.gr2343.core;
 

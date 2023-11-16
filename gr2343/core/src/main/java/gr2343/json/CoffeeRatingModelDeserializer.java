@@ -16,34 +16,35 @@ import gr2343.core.CoffeeRatings;
 
 class CoffeeRatingModelDeserializer extends JsonDeserializer<CoffeeRatingModel> {
 
-  private CoffeeRatingsDeserializer coffeeRatingsDeserializer = new CoffeeRatingsDeserializer();
+    private CoffeeRatingsDeserializer coffeeRatingsDeserializer = new CoffeeRatingsDeserializer();
 
-  /*
-   * format: { "ratings": [ ... ] }
-   */
+    /*
+     * format: { "ratings": [ ... ] }
+     */
 
-  @Override
-  public CoffeeRatingModel deserialize(JsonParser parser, DeserializationContext ctxt)
-      throws IOException, JsonProcessingException {
-    TreeNode treeNode = parser.getCodec().readTree(parser);
-    return deserialize((JsonNode) treeNode);
-  }
-
-  CoffeeRatingModel deserialize(JsonNode treeNode) {
-    if (treeNode instanceof ObjectNode) {
-      ObjectNode objectNode = (ObjectNode) treeNode;
-      CoffeeRatingModel model = new CoffeeRatingModel();
-      JsonNode ratingsNode = objectNode.get("ratings");
-      if (ratingsNode instanceof ArrayNode) {
-        for (JsonNode elementNode : ((ArrayNode) ratingsNode)) {
-          CoffeeRatings ratings = coffeeRatingsDeserializer.deserialize(elementNode);
-          if (ratings != null) {
-            model.addRating(ratings);
-          }
-        }
-      }
-      return model;
+    @Override
+    public CoffeeRatingModel deserialize(JsonParser parser, DeserializationContext ctxt)
+            throws IOException, JsonProcessingException {
+        TreeNode treeNode = parser.getCodec().readTree(parser);
+        System.out.println("Raw JSON Content: " + treeNode.toString()); // Log the raw JSON content
+        return deserialize((JsonNode) treeNode);
     }
-    return null;
-  }
+
+    CoffeeRatingModel deserialize(JsonNode treeNode) {
+        if (treeNode instanceof ObjectNode) {
+            ObjectNode objectNode = (ObjectNode) treeNode;
+            CoffeeRatingModel model = new CoffeeRatingModel();
+            JsonNode ratingsNode = objectNode.get("ratings");
+            if (ratingsNode instanceof ArrayNode) {
+                for (JsonNode elementNode : ((ArrayNode) ratingsNode)) {
+                    CoffeeRatings ratings = coffeeRatingsDeserializer.deserialize(elementNode);
+                    if (ratings != null) {
+                        model.addRating(ratings);
+                    }
+                }
+            }
+            return model;
+        }
+        return null;
+    }
 }
