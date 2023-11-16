@@ -9,25 +9,16 @@ package fxui {
     [gr2343.ui] 
 }
 
-package restserver {
-    [gr2343.restserver] 
-}
-
-package restapi {
-    [gr2343.restapi] 
-}
-
 package "External Libraries" {
     [javafx]
     [fxml]
+    [java.net.http]
 }
 
 [gr2343.ui] ..> [javafx]
 [gr2343.ui] ..> [fxml]
-[gr2343.restserver] ..> [gr2343.restapi]
 [gr2343.ui] ..> [gr2343.core]
-[gr2343.restserver] ..> [gr2343.core]
-[gr2343.restapi] ..> [gr2343.core]
-[gr2343.restapi] ..> [gr2343.json]
+[gr2343.ui] ..> [gr2343.json]
+[gr2343.ui] ..> [java.net.http]
 
 @enduml
