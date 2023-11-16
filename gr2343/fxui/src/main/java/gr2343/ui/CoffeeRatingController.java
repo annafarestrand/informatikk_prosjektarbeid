@@ -2,9 +2,7 @@ package gr2343.ui;
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.List;
 import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import gr2343.core.CoffeeRatingItem;
@@ -16,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import gr2343.core.CoffeeRatingModel;
-import gr2343.ui.RemoteCoffeeRatingModelAccess;
 
 public class CoffeeRatingController {
 
@@ -30,7 +27,6 @@ public class CoffeeRatingController {
     private RemoteCoffeeRatingModelAccess remoteModelAccess;
 
     public CoffeeRatingController() throws IOException {
-        //model = coffeeRatingsPersistence.readCoffeeRatings(ratingsWithItems);
         remoteModelAccess = new RemoteCoffeeRatingModelAccess(URI.create("http://localhost:8080/"));
         remoteModelAccess.getCoffeeRatingModel();
         model = remoteModelAccess.getCoffeeRatingModel();
@@ -78,7 +74,6 @@ public class CoffeeRatingController {
     
             // Clear the existing items in the ListView
             ratingsView.getItems().clear();
-            System.out.println("ratings.getItems() = " + ratings.getItems());
     
             if (ratings != null && ratings.getItems() != null) {
                 // Add the items from CoffeeRatings to the ListView

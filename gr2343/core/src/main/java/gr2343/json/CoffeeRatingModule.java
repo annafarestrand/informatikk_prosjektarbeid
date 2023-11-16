@@ -20,15 +20,4 @@ class CoffeeRatingModule extends SimpleModule {
         addDeserializer(CoffeeRatingModel.class, new CoffeeRatingModelDeserializer());
     }
 
-    // test
-    /*
-     * public static void main(String[] args) { ObjectMapper mapper = new ObjectMapper();
-     * mapper.registerModule(new CoffeeRatingModule()); CoffeeRatings ratings = new CoffeeRatings();
-     * CoffeeRatingItem item = new CoffeeRatingItem(); item.setDescription("Kaffe på Sit Kafe");
-     * item.setRating(5); ratings.addCoffeeRatingItem(item); try {
-     * System.out.println(mapper.writeValueAsString(ratings)); } catch (JsonProcessingException e) {
-     * System.out.println("Virket ikke"); e.printStackTrace(); }
-     * 
-     * }
-     */
 }

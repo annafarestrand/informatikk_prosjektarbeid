@@ -64,8 +64,6 @@ public class CoffeeRatingModuleTest {
             assertEquals(5, item.getRating());
         } catch (JsonProcessingException e) {
             fail();
-        } catch (IOException e) {
-            fail();
         }
     }
 }
