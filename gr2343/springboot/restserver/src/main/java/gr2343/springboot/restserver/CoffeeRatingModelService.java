@@ -58,12 +58,12 @@ public class CoffeeRatingModelService {
     }
     CoffeeRatingModel coffeeRatingModel = new CoffeeRatingModel();
     CoffeeRatings coffeeRating1 = new CoffeeRatings();
-    coffeeRating1.setName("coffee1");
-    coffeeRating1.addCoffeeRatingItem(new CoffeeRatingItem());
+    coffeeRating1.setName("ratings");
+    CoffeeRatingItem coffeeRatingItem1 = new CoffeeRatingItem();
+    coffeeRatingItem1.setDescription("Coffee 1");
+    coffeeRatingItem1.setRating(5);
+    coffeeRating1.addCoffeeRatingItem(coffeeRatingItem1);
     coffeeRatingModel.addRating(coffeeRating1);
-    CoffeeRatings coffeeRating2 = new  CoffeeRatings();
-    coffeeRating2.setName("coffee2");
-    coffeeRatingModel.addRating(coffeeRating2);
     return coffeeRatingModel;
   }
 
